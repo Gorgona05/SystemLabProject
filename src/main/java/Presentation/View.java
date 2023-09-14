@@ -96,6 +96,11 @@ public class View extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo Instrumento"));
 
@@ -612,12 +617,12 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoTextFieldActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-
         String cod = codigoTextField.getText();
         String uni = unidadTextField.getText();
         String nom = nombreTextField.getText();
          try {
            controladora.addInstrumento(cod ,nom ,uni);
+           controladora.uptadeTable();
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -627,6 +632,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
         int filaSeleccionada = jTable1.getSelectedRow();
         Object codigo = jTable1.getValueAt(filaSeleccionada, 0);
         Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
@@ -688,6 +694,10 @@ public class View extends javax.swing.JFrame {
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable4MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       controladora.uptadeTable();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
