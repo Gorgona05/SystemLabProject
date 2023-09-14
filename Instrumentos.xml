@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Instrumentos><Instrumento Codigo="TER"><Nombre>Termómetro</Nombre><Unidad>Grados Celcius</Unidad></Instrumento><Instrumento Codigo="BAR"><Nombre>Baró</Nombre><Unidad>PSI</Unidad></Instrumento></Instrumentos>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Instrumentos><Instrumento Codigo="TER"><Nombre>Termómetro</Nombre><Unidad>Grados Celcius</Unidad></Instrumento><Instrumento Codigo="BAR"><Nombre>Barómetro</Nombre><Unidad>PSI</Unidad></Instrumento></Instrumentos>

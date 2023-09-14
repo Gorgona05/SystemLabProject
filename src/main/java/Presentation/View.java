@@ -622,7 +622,8 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoTextFieldActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-       borrarButton.setEnabled(false); 
+        borrarButton.setEnabled(false); 
+        codigoTextField.setEnabled(true); 
         String cod = codigoTextField.getText();
         String uni = unidadTextField.getText();
         String nom = nombreTextField.getText();
@@ -636,7 +637,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+        codigoTextField.setEnabled(false); 
         int filaSeleccionada = jTable1.getSelectedRow();
         Object codigo = jTable1.getValueAt(filaSeleccionada, 0);
         Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
