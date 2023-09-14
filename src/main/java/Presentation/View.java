@@ -135,6 +135,11 @@ public class View extends javax.swing.JFrame {
         });
 
         limpiarButton.setText("Limpiar");
+        limpiarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarButtonActionPerformed(evt);
+            }
+        });
 
         borrarButton.setText("Borrar");
         borrarButton.setEnabled(false);
@@ -704,6 +709,12 @@ public class View extends javax.swing.JFrame {
        controladora.uptadeTable();
        borrarButton.setEnabled(false); 
     }//GEN-LAST:event_formWindowOpened
+
+    private void limpiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarButtonActionPerformed
+        limpiarLabelsTipoInst();
+        borrarButton.setEnabled(false); 
+         codigoTextField.setEnabled(true); 
+    }//GEN-LAST:event_limpiarButtonActionPerformed
 
     /**
      * @param args the command line arguments
