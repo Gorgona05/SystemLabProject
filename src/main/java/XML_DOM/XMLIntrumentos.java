@@ -214,4 +214,44 @@ public class XMLIntrumentos {
         
         return result;
     }
+    
+    public boolean deleteTipoInstrumento(TipoInstrumento instrumento) throws TransformerException{
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile); 
+            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                     
+                    if(instrumento.getCodigo().equals(instrumentoElement.getAttribute("Codigo")))
+                    {
+                        instrumentoElement.getParentNode().removeChild( instrumentoElement);
+
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the instrument to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
+        }
+        
+        return result;
+        
+    }
 }

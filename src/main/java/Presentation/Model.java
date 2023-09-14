@@ -10,6 +10,7 @@ import Logic.Service;
 import XML_DOM.XMLIntrumentos;
 import java.util.List;
 import java.util.Observer;
+import javax.xml.transform.TransformerException;
 
 /**
  *
@@ -89,7 +90,16 @@ public class Model extends java.util.Observable{
        }
     }
      
-    public List<TipoInstrumento> uptadeTable(){
+    public List<TipoInstrumento> returnList(){
         return dataInstrumentos.getInstrumentos();
+    }
+    
+    public void deleteInstrumento(TipoInstrumento inst) throws TransformerException, Exception{
+        if(Service.instance().ExistInstrumento(inst)){
+           XMLInst.deleteTipoInstrumento(inst);
+           Service.instance().delete(inst);
+        }
+        else
+            return;
     }
 }

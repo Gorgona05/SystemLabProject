@@ -5,6 +5,7 @@
 package Presentation;
 
 import Logic.TipoInstrumento;
+import java.util.List;
 
 /**
  *
@@ -27,6 +28,16 @@ public class Controller {
     }
     
     public void uptadeTable(){
-        vista.UptadeTable(mod.uptadeTable());
+        vista.UptadeTable(mod.returnList());
+    }
+    
+   public List<TipoInstrumento> returnList(){
+        return mod.returnList();
+   }
+   
+    public void deleteInstrumento(TipoInstrumento inst) throws Exception{
+        mod.deleteInstrumento(inst);
+        uptadeTable();
+        vista.limpiarLabelsTipoInst();
     }
 }

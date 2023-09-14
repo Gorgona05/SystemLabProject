@@ -214,6 +214,11 @@ public class View extends javax.swing.JFrame {
         reporteButton.setText("Reporte");
 
         buscarButton.setText("Buscar");
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,8 +227,8 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreBusquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(269, 269, 269)
+                .addComponent(nombreBusquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(177, 177, 177)
                 .addComponent(reporteButton)
                 .addGap(18, 18, 18)
                 .addComponent(buscarButton)
@@ -634,7 +639,6 @@ public class View extends javax.swing.JFrame {
         String nom = nombreTextField.getText();
          try {
            controladora.addInstrumento(cod ,nom ,uni);
-           controladora.uptadeTable();
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -654,7 +658,14 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButtonActionPerformed
-        
+         String cod = codigoTextField.getText();
+         String uni = unidadTextField.getText();
+         String nom = nombreTextField.getText();
+         try {
+             controladora.deleteInstrumento(new TipoInstrumento(cod,nom,uni));
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_borrarButtonActionPerformed
 
     private void txtDescripcion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcion3ActionPerformed
@@ -713,8 +724,22 @@ public class View extends javax.swing.JFrame {
     private void limpiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarButtonActionPerformed
         limpiarLabelsTipoInst();
         borrarButton.setEnabled(false); 
-         codigoTextField.setEnabled(true); 
+        codigoTextField.setEnabled(true); 
     }//GEN-LAST:event_limpiarButtonActionPerformed
+
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+         String busqueda = nombreBusquedaTextField.getText().toLowerCase();
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+    model.setRowCount(0);
+    
+    for (int i = 0; i < controladora.returnList().size(); i++) {
+        String tipInst = controladora.returnList().get(i).getNombre();
+        if (tipInst.toLowerCase().contains(busqueda)) 
+            model.addRow(new Object[]{controladora.returnList().get(i).getCodigo(),
+            controladora.returnList().get(i).getNombre(),controladora.returnList().get(i).getUnidad()}); 
+    }
+    }//GEN-LAST:event_buscarButtonActionPerformed
 
     /**
      * @param args the command line arguments
