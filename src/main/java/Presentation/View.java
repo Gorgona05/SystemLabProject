@@ -622,6 +622,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoTextFieldActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+       borrarButton.setEnabled(false); 
         String cod = codigoTextField.getText();
         String uni = unidadTextField.getText();
         String nom = nombreTextField.getText();
@@ -700,6 +701,7 @@ public class View extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        controladora.uptadeTable();
+       borrarButton.setEnabled(false); 
     }//GEN-LAST:event_formWindowOpened
 
     /**
