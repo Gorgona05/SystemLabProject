@@ -5,7 +5,6 @@
 package Presentation;
 
 import Logic.TipoInstrumento;
-import java.util.List;
 
 /**
  *
@@ -24,6 +23,7 @@ public class Controller {
     public void addInstrumento(String cod,String nom,String uni) throws Exception{
         mod.addInstrumento(new TipoInstrumento(cod,nom,uni));
         uptadeTable();
+        vista.limpiarLabelsTipoInst();
     }
     
     public void uptadeTable(){

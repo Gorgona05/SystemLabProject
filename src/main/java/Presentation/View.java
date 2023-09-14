@@ -36,6 +36,11 @@ public class View extends javax.swing.JFrame {
         }
     }
 
+    public void limpiarLabelsTipoInst(){
+      codigoTextField.setText("");
+      unidadTextField.setText("");
+      nombreTextField.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -626,9 +631,7 @@ public class View extends javax.swing.JFrame {
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
-      codigoTextField.setText("");
-      unidadTextField.setText("");
-      nombreTextField.setText("");
+     
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

@@ -171,7 +171,7 @@ public class XMLIntrumentos {
         return result;
     } 
     
-    public boolean UpdateInstrumento(Instrumento instrumento) throws TransformerConfigurationException, TransformerException
+    public boolean UpdateInstrumento(TipoInstrumento instrumento) throws TransformerConfigurationException, TransformerException
     {
         boolean result = false;
         

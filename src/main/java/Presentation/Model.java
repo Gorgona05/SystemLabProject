@@ -78,11 +78,13 @@ public class Model extends java.util.Observable{
     }
  
      public void addInstrumento(TipoInstrumento inst) throws Exception {
-       XMLInst.AddInstrumento(inst);
+     
        if(Service.instance().ExistInstrumento(inst)){
-          Service.instance().update(inst);
+           XMLInst.UpdateInstrumento( inst);
+           Service.instance().update(inst);
        }
        else{
+            XMLInst.AddInstrumento(inst);
             Service.instance().create(inst);
        }
     }
