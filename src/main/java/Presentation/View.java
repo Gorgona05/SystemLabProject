@@ -1038,12 +1038,12 @@ public class View extends javax.swing.JFrame {
 
     private void NumCalibracionesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumCalibracionesTextFieldActionPerformed
         borrarButton.setEnabled(false); 
-        codigoTextField.setEnabled(true); 
-        String cod = codigoTextField.getText();
-        String uni = unidadTextField.getText();
-        String nom = nombreTextField.getText();
+        NumCalibracionesTextField.setEnabled(true); 
+        String num = NumCalibracionesTextField.getText();
+        String fech = FechaCalibracionesTextField1.getText();
+        String medicion = medicionesCalibracionesTextField.getText();
          try {
-           controladora.addInstrumento(cod ,nom ,uni);
+           controladora.addCalibracion(num ,fech ,medicion);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }

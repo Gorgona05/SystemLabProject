@@ -45,4 +45,10 @@ public class Controller {
     public void recoverList(){
         mod.recoverList();
     }
+
+    void addCalibracion(String num, String fech, String medicion)  throws Exception{
+        mod.addCalibracion(new TipoInstrumento(num,nom,uni));
+        uptadeTable();
+        vista.limpiarLabelsTipoInst();
+    }
 }
