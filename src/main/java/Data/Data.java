@@ -16,9 +16,7 @@ public class Data {
     private List<TipoInstrumento> instrumentos; 
 
     public Data() {
-        instrumentos = new ArrayList<>();
-        instrumentos.add(new TipoInstrumento("TER","Termómetro","Grados Celcius"));
-        instrumentos.add(new TipoInstrumento("BAR","Barómetro","PSI"));
+        instrumentos = new ArrayList<>(); 
     }
 
     public List<TipoInstrumento> getInstrumentos() {

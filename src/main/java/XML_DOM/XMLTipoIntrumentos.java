@@ -4,11 +4,13 @@
  */
 package XML_DOM;
 
-import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -20,10 +22,10 @@ import org.xml.sax.SAXException;
  *
  * @author David
  */
-public class XMLIntrumentos {
+public class XMLTipoIntrumentos {
     private static String xmlFilePath = "";
 
-    public XMLIntrumentos(String filepath){
+    public XMLTipoIntrumentos(String filepath){
         xmlFilePath = filepath;
         CreateFile();
     }
@@ -93,7 +95,7 @@ public class XMLIntrumentos {
         }
     }
     
-     public boolean AddInstrumento(TipoInstrumento instrumento) throws TransformerConfigurationException, TransformerException
+     public boolean AddTipoInstrumento(TipoInstrumento instrumento) throws TransformerConfigurationException, TransformerException
     {
        boolean result = false;
         boolean idexist = false;
@@ -171,7 +173,7 @@ public class XMLIntrumentos {
         return result;
     } 
     
-    public boolean UpdateInstrumento(TipoInstrumento instrumento) throws TransformerConfigurationException, TransformerException
+    public boolean UpdateTipoInstrumento(TipoInstrumento instrumento) throws TransformerConfigurationException, TransformerException
     {
         boolean result = false;
         
@@ -254,4 +256,34 @@ public class XMLIntrumentos {
         return result;
         
     }
+    
+    public boolean recoverTipoInstrumento(List<TipoInstrumento> instrumentos) {
+        boolean result = false;
+
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            
+            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
+            for (int i = 0; i < instrumentosNodes.getLength(); i++) {
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if (instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                    
+                    String codigo = instrumentoElement.getAttribute("Codigo");
+                    String nombre = instrumentoElement.getElementsByTagName("Nombre").item(0).getTextContent();
+                    String unidad = instrumentoElement.getElementsByTagName("Unidad").item(0).getTextContent();
+                    instrumentos.add(new TipoInstrumento(codigo, nombre, unidad));
+                }
+            }
+            result = true;
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+             ex.printStackTrace();
+        }
+
+        return result;
+    }
 }
+

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 /**
  *
@@ -717,8 +719,11 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable4MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+       controladora.recoverList();
        controladora.uptadeTable();
        borrarButton.setEnabled(false); 
+      
     }//GEN-LAST:event_formWindowOpened
 
     private void limpiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarButtonActionPerformed

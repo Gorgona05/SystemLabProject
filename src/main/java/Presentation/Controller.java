@@ -6,6 +6,8 @@ package Presentation;
 
 import Logic.TipoInstrumento;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 /**
  *
@@ -39,5 +41,8 @@ public class Controller {
         mod.deleteInstrumento(inst);
         uptadeTable();
         vista.limpiarLabelsTipoInst();
+    }
+    public void recoverList(){
+        mod.recoverList();
     }
 }

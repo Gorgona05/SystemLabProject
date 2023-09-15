@@ -7,10 +7,13 @@ package Presentation;
 import Data.Data;
 import Logic.TipoInstrumento;
 import Logic.Service;
-import XML_DOM.XMLIntrumentos;
+import XML_DOM.XMLTipoIntrumentos;
+import java.io.IOException;
 import java.util.List;
 import java.util.Observer;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -20,7 +23,7 @@ public class Model extends java.util.Observable{
     private Data dataInstrumentos;
     private TipoInstrumento actual;
     private int changedProps;
-    private XMLIntrumentos XMLInst;
+    private XMLTipoIntrumentos XMLInst;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -34,7 +37,7 @@ public class Model extends java.util.Observable{
     
       public void CreateUserFile()
     {
-        XMLInst = new XMLIntrumentos("Instrumentos.xml");
+        XMLInst = new XMLTipoIntrumentos("Instrumentos.xml");
     }
     
     @Override
@@ -81,11 +84,11 @@ public class Model extends java.util.Observable{
      public void addInstrumento(TipoInstrumento inst) throws Exception {
      
        if(Service.instance().ExistInstrumento(inst)){
-           XMLInst.UpdateInstrumento( inst);
+           XMLInst.UpdateTipoInstrumento( inst);
            Service.instance().update(inst);
        }
        else{
-            XMLInst.AddInstrumento(inst);
+            XMLInst.AddTipoInstrumento(inst);
             Service.instance().create(inst);
        }
     }
@@ -99,7 +102,8 @@ public class Model extends java.util.Observable{
            XMLInst.deleteTipoInstrumento(inst);
            Service.instance().delete(inst);
         }
-        else
-            return;
+    }
+    public void recoverList(){
+        XMLInst.recoverTipoInstrumento(returnList());
     }
 }
