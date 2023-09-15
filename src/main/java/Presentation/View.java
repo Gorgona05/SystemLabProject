@@ -96,7 +96,7 @@ public class View extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jpListado1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        listaInstrumentosTabla = new javax.swing.JTable();
         calibracionesPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         NumCalLabel = new javax.swing.JLabel();
@@ -517,7 +517,7 @@ public class View extends javax.swing.JFrame {
 
         jpListado1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        listaInstrumentosTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -525,12 +525,12 @@ public class View extends javax.swing.JFrame {
                 "No. Serie", "Descripción", "Mínimo", "Máximo", "Tolerancia"
             }
         ));
-        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+        listaInstrumentosTabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable4MouseClicked(evt);
+                listaInstrumentosTablaMouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(listaInstrumentosTabla);
 
         javax.swing.GroupLayout jpListado1Layout = new javax.swing.GroupLayout(jpListado1);
         jpListado1.setLayout(jpListado1Layout);
@@ -1004,9 +1004,9 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+    private void listaInstrumentosTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaInstrumentosTablaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable4MouseClicked
+    }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
@@ -1086,7 +1086,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_reporteCalibracionButtonActionPerformed
 
     private void listadoTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listadoTableCalibracionMouseClicked
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_listadoTableCalibracionMouseClicked
 
     private void MedicionesLecturaTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableCalibracionMouseClicked
@@ -1174,7 +1174,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpListado1;
@@ -1187,6 +1186,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel lblTolerancia3;
     public javax.swing.JButton limpiarButton;
     public javax.swing.JButton limpiarCalibracionButton;
+    private javax.swing.JTable listaInstrumentosTabla;
     public javax.swing.JTable listadoTableCalibracion;
     public javax.swing.JTextField medicionesCalibracionesTextField;
     public javax.swing.JTextField nombreBusquedaTextField;

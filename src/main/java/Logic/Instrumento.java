@@ -73,4 +73,13 @@ public class Instrumento extends TipoInstrumento{
         this.tolerancia = tolerancia;
     }
     
+    @Override
+        public String toString() {
+            return "Número de Serie: " + serie + "\n" +
+                   "Descripción: " + descripcion + "\n" +
+                   "Mínimo: " + minimo + "\n" +
+                   "Máximo: " + maximo + "\n" +
+                   "Tolerancia: " + tolerancia + "\n";
+}
+        
 }

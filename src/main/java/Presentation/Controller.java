@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Presentation;
 
 import Logic.TipoInstrumento;
@@ -47,7 +44,7 @@ public class Controller {
     }
 
     void addCalibracion(String num, String fech, String medicion)  throws Exception{
-        mod.addCalibracion(new TipoInstrumento(num,nom,uni));
+        //mod.addCalibracion(new TipoInstrumento(cod,nom,uni));
         uptadeTable();
         vista.limpiarLabelsTipoInst();
     }
