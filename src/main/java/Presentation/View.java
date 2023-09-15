@@ -100,27 +100,27 @@ public class View extends javax.swing.JFrame {
         calibracionesPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         NumCalLabel = new javax.swing.JLabel();
-        NumCalTextField = new javax.swing.JTextField();
+        NumCalibracionesTextField = new javax.swing.JTextField();
         MedicionesCalLabel = new javax.swing.JLabel();
-        medicionesCalTextField = new javax.swing.JTextField();
+        medicionesCalibracionesTextField = new javax.swing.JTextField();
         FechaCalLabel = new javax.swing.JLabel();
-        FechaCalTextField1 = new javax.swing.JTextField();
-        guardarCalButton = new javax.swing.JButton();
-        limpiarCalButton = new javax.swing.JButton();
-        borrarCalButton = new javax.swing.JButton();
+        FechaCalibracionesTextField1 = new javax.swing.JTextField();
+        guardarCalibracionButton = new javax.swing.JButton();
+        limpiarCalibracionButton = new javax.swing.JButton();
+        borrarCalibracionButton = new javax.swing.JButton();
         MedicionesPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        MedicionesLecturaTable = new javax.swing.JTable();
+        MedicionesLecturaTableCalibracion = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        InfoInstrumeCalibraTXT = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
-        lblDescripcionB2 = new javax.swing.JLabel();
-        NumeroBusqCaliTextField = new javax.swing.JTextField();
-        buscarCalButton = new javax.swing.JButton();
-        reporteCalButton = new javax.swing.JButton();
+        numCalibracionLabel = new javax.swing.JLabel();
+        NumeroBusqCalibracionTxtField = new javax.swing.JTextField();
+        buscarCalibracionButton = new javax.swing.JButton();
+        reporteCalibracionButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        listadoTableCalibracion = new javax.swing.JTable();
         acercaDePanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -596,53 +596,53 @@ public class View extends javax.swing.JFrame {
 
         NumCalLabel.setText("Número");
 
-        NumCalTextField.addActionListener(new java.awt.event.ActionListener() {
+        NumCalibracionesTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumCalTextFieldActionPerformed(evt);
+                NumCalibracionesTextFieldActionPerformed(evt);
             }
         });
 
         MedicionesCalLabel.setText("Mediciones");
 
-        medicionesCalTextField.addActionListener(new java.awt.event.ActionListener() {
+        medicionesCalibracionesTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                medicionesCalTextFieldActionPerformed(evt);
+                medicionesCalibracionesTextFieldActionPerformed(evt);
             }
         });
 
         FechaCalLabel.setText("Fecha");
 
-        FechaCalTextField1.addActionListener(new java.awt.event.ActionListener() {
+        FechaCalibracionesTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaCalTextField1ActionPerformed(evt);
+                FechaCalibracionesTextField1ActionPerformed(evt);
             }
         });
 
-        guardarCalButton.setText("Guardar");
-        guardarCalButton.addActionListener(new java.awt.event.ActionListener() {
+        guardarCalibracionButton.setText("Guardar");
+        guardarCalibracionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarCalButtonActionPerformed(evt);
+                guardarCalibracionButtonActionPerformed(evt);
             }
         });
 
-        limpiarCalButton.setText("Limpiar");
-        limpiarCalButton.addActionListener(new java.awt.event.ActionListener() {
+        limpiarCalibracionButton.setText("Limpiar");
+        limpiarCalibracionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limpiarCalButtonActionPerformed(evt);
+                limpiarCalibracionButtonActionPerformed(evt);
             }
         });
 
-        borrarCalButton.setText("Borrar");
-        borrarCalButton.setEnabled(false);
-        borrarCalButton.addActionListener(new java.awt.event.ActionListener() {
+        borrarCalibracionButton.setText("Borrar");
+        borrarCalibracionButton.setEnabled(false);
+        borrarCalibracionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarCalButtonActionPerformed(evt);
+                borrarCalibracionButtonActionPerformed(evt);
             }
         });
 
         MedicionesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Listado")));
 
-        MedicionesLecturaTable.setModel(new javax.swing.table.DefaultTableModel(
+        MedicionesLecturaTableCalibracion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -650,12 +650,12 @@ public class View extends javax.swing.JFrame {
                 "Medida", "Referencia", "Lectura"
             }
         ));
-        MedicionesLecturaTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        MedicionesLecturaTableCalibracion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MedicionesLecturaTableMouseClicked(evt);
+                MedicionesLecturaTableCalibracionMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(MedicionesLecturaTable);
+        jScrollPane5.setViewportView(MedicionesLecturaTableCalibracion);
 
         javax.swing.GroupLayout MedicionesPanelLayout = new javax.swing.GroupLayout(MedicionesPanel);
         MedicionesPanel.setLayout(MedicionesPanelLayout);
@@ -677,33 +677,33 @@ public class View extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(NumCalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NumCalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NumCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(FechaCalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(FechaCalTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(FechaCalibracionesTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(MedicionesCalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medicionesCalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(medicionesCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MedicionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(guardarCalButton)
-                    .addComponent(borrarCalButton))
+                    .addComponent(guardarCalibracionButton)
+                    .addComponent(borrarCalibracionButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(limpiarCalButton)
+                .addComponent(limpiarCalibracionButton)
                 .addGap(17, 17, 17))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarCalButton)
-                    .addComponent(limpiarCalButton))
+                    .addComponent(guardarCalibracionButton)
+                    .addComponent(limpiarCalibracionButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(borrarCalButton)
+                .addComponent(borrarCalibracionButton)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,13 +711,13 @@ public class View extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NumCalLabel)
-                            .addComponent(NumCalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NumCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(FechaCalLabel)
-                            .addComponent(FechaCalTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(FechaCalibracionesTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(MedicionesCalLabel)
-                            .addComponent(medicionesCalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(medicionesCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(MedicionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -726,9 +726,9 @@ public class View extends javax.swing.JFrame {
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        InfoInstrumeCalibraTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                InfoInstrumeCalibraTXTActionPerformed(evt);
             }
         });
 
@@ -738,39 +738,39 @@ public class View extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3)
+                .addComponent(InfoInstrumeCalibraTXT)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InfoInstrumeCalibraTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        lblDescripcionB2.setText("Número");
+        numCalibracionLabel.setText("Número");
 
-        NumeroBusqCaliTextField.addActionListener(new java.awt.event.ActionListener() {
+        NumeroBusqCalibracionTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumeroBusqCaliTextFieldActionPerformed(evt);
+                NumeroBusqCalibracionTxtFieldActionPerformed(evt);
             }
         });
 
-        buscarCalButton.setText("Buscar");
-        buscarCalButton.addActionListener(new java.awt.event.ActionListener() {
+        buscarCalibracionButton.setText("Buscar");
+        buscarCalibracionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarCalButtonActionPerformed(evt);
+                buscarCalibracionButtonActionPerformed(evt);
             }
         });
 
-        reporteCalButton.setText("Reporte");
-        reporteCalButton.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
-        reporteCalButton.addActionListener(new java.awt.event.ActionListener() {
+        reporteCalibracionButton.setText("Reporte");
+        reporteCalibracionButton.setDebugGraphicsOptions(javax.swing.DebugGraphics.LOG_OPTION);
+        reporteCalibracionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reporteCalButtonActionPerformed(evt);
+                reporteCalibracionButtonActionPerformed(evt);
             }
         });
 
@@ -780,13 +780,13 @@ public class View extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblDescripcionB2)
+                .addComponent(numCalibracionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NumeroBusqCaliTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NumeroBusqCalibracionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(reporteCalButton)
+                .addComponent(reporteCalibracionButton)
                 .addGap(33, 33, 33)
-                .addComponent(buscarCalButton)
+                .addComponent(buscarCalibracionButton)
                 .addGap(27, 27, 27))
         );
         jPanel14Layout.setVerticalGroup(
@@ -794,16 +794,16 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDescripcionB2)
-                    .addComponent(NumeroBusqCaliTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarCalButton)
-                    .addComponent(reporteCalButton))
+                    .addComponent(numCalibracionLabel)
+                    .addComponent(NumeroBusqCalibracionTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarCalibracionButton)
+                    .addComponent(reporteCalibracionButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Listado")));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        listadoTableCalibracion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -811,14 +811,14 @@ public class View extends javax.swing.JFrame {
                 "Número", "Fecha", "Mediciones"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        listadoTableCalibracion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                listadoTableCalibracionMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane3.setViewportView(listadoTableCalibracion);
+        if (listadoTableCalibracion.getColumnModel().getColumnCount() > 0) {
+            listadoTableCalibracion.getColumnModel().getColumn(1).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1036,53 +1036,62 @@ public class View extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_buscarButtonActionPerformed
 
-    private void NumCalTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumCalTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumCalTextFieldActionPerformed
+    private void NumCalibracionesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumCalibracionesTextFieldActionPerformed
+        borrarButton.setEnabled(false); 
+        codigoTextField.setEnabled(true); 
+        String cod = codigoTextField.getText();
+        String uni = unidadTextField.getText();
+        String nom = nombreTextField.getText();
+         try {
+           controladora.addInstrumento(cod ,nom ,uni);
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_NumCalibracionesTextFieldActionPerformed
 
-    private void FechaCalTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCalTextField1ActionPerformed
+    private void FechaCalibracionesTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCalibracionesTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FechaCalTextField1ActionPerformed
+    }//GEN-LAST:event_FechaCalibracionesTextField1ActionPerformed
 
-    private void guardarCalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCalButtonActionPerformed
+    private void guardarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCalibracionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_guardarCalButtonActionPerformed
+    }//GEN-LAST:event_guardarCalibracionButtonActionPerformed
 
-    private void limpiarCalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarCalButtonActionPerformed
+    private void limpiarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarCalibracionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_limpiarCalButtonActionPerformed
+    }//GEN-LAST:event_limpiarCalibracionButtonActionPerformed
 
-    private void borrarCalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCalButtonActionPerformed
+    private void borrarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCalibracionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_borrarCalButtonActionPerformed
+    }//GEN-LAST:event_borrarCalibracionButtonActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void InfoInstrumeCalibraTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoInstrumeCalibraTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_InfoInstrumeCalibraTXTActionPerformed
 
-    private void medicionesCalTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicionesCalTextFieldActionPerformed
+    private void medicionesCalibracionesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicionesCalibracionesTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_medicionesCalTextFieldActionPerformed
+    }//GEN-LAST:event_medicionesCalibracionesTextFieldActionPerformed
 
-    private void NumeroBusqCaliTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroBusqCaliTextFieldActionPerformed
+    private void NumeroBusqCalibracionTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroBusqCalibracionTxtFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NumeroBusqCaliTextFieldActionPerformed
+    }//GEN-LAST:event_NumeroBusqCalibracionTxtFieldActionPerformed
 
-    private void buscarCalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCalButtonActionPerformed
+    private void buscarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCalibracionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buscarCalButtonActionPerformed
+    }//GEN-LAST:event_buscarCalibracionButtonActionPerformed
 
-    private void reporteCalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteCalButtonActionPerformed
+    private void reporteCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteCalibracionButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_reporteCalButtonActionPerformed
+    }//GEN-LAST:event_reporteCalibracionButtonActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void listadoTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listadoTableCalibracionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2MouseClicked
+    }//GEN-LAST:event_listadoTableCalibracionMouseClicked
 
-    private void MedicionesLecturaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableMouseClicked
+    private void MedicionesLecturaTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableCalibracionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_MedicionesLecturaTableMouseClicked
+    }//GEN-LAST:event_MedicionesLecturaTableCalibracionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1121,22 +1130,23 @@ public class View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FechaCalLabel;
-    public javax.swing.JTextField FechaCalTextField1;
+    public javax.swing.JTextField FechaCalibracionesTextField1;
+    private javax.swing.JTextField InfoInstrumeCalibraTXT;
     private javax.swing.JLabel MedicionesCalLabel;
-    public javax.swing.JTable MedicionesLecturaTable;
+    public javax.swing.JTable MedicionesLecturaTableCalibracion;
     private javax.swing.JPanel MedicionesPanel;
     private javax.swing.JLabel NumCalLabel;
-    public javax.swing.JTextField NumCalTextField;
-    private javax.swing.JTextField NumeroBusqCaliTextField;
+    public javax.swing.JTextField NumCalibracionesTextField;
+    private javax.swing.JTextField NumeroBusqCalibracionTxtField;
     private javax.swing.JPanel acercaDePanel;
     public javax.swing.JButton borrarButton;
-    public javax.swing.JButton borrarCalButton;
+    public javax.swing.JButton borrarCalibracionButton;
     public javax.swing.JButton buscarButton;
-    private javax.swing.JButton buscarCalButton;
+    private javax.swing.JButton buscarCalibracionButton;
     private javax.swing.JPanel calibracionesPanel;
     public javax.swing.JTextField codigoTextField;
     public javax.swing.JButton guardarButton;
-    public javax.swing.JButton guardarCalButton;
+    public javax.swing.JButton guardarCalibracionButton;
     private javax.swing.JPanel instrumentosPanel3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton6;
@@ -1164,14 +1174,11 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable1;
-    public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel jpListado1;
     private javax.swing.JLabel lblDescripcionB1;
-    private javax.swing.JLabel lblDescripcionB2;
     private javax.swing.JLabel lblMinimo3;
     private javax.swing.JLabel lblSerie6;
     private javax.swing.JLabel lblSerie7;
@@ -1179,12 +1186,14 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel lblSerie9;
     private javax.swing.JLabel lblTolerancia3;
     public javax.swing.JButton limpiarButton;
-    public javax.swing.JButton limpiarCalButton;
-    public javax.swing.JTextField medicionesCalTextField;
+    public javax.swing.JButton limpiarCalibracionButton;
+    public javax.swing.JTable listadoTableCalibracion;
+    public javax.swing.JTextField medicionesCalibracionesTextField;
     public javax.swing.JTextField nombreBusquedaTextField;
     public javax.swing.JTextField nombreTextField;
+    private javax.swing.JLabel numCalibracionLabel;
     public javax.swing.JButton reporteButton;
-    private javax.swing.JButton reporteCalButton;
+    private javax.swing.JButton reporteCalibracionButton;
     private javax.swing.JPanel tiposPanel;
     private javax.swing.JTextField txtDescripcion3;
     private javax.swing.JTextField txtMaximo1;

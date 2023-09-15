@@ -835,27 +835,27 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="NumCalLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="NumCalTextField" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="NumCalibracionesTextField" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="FechaCalLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="FechaCalTextField1" min="-2" pref="101" max="-2" attributes="0"/>
+                                  <Component id="FechaCalibracionesTextField1" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="MedicionesCalLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="medicionesCalTextField" min="-2" pref="101" max="-2" attributes="0"/>
+                                  <Component id="medicionesCalibracionesTextField" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="MedicionesPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="guardarCalButton" min="-2" max="-2" attributes="0"/>
-                              <Component id="borrarCalButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="guardarCalibracionButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="borrarCalibracionButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="limpiarCalButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="limpiarCalibracionButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -864,11 +864,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="guardarCalButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="limpiarCalButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="guardarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="limpiarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="borrarCalButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="borrarCalibracionButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -877,14 +877,14 @@
                                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="NumCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="NumCalTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="NumCalibracionesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="FechaCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="FechaCalTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="FechaCalibracionesTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="MedicionesCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="medicionesCalTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="medicionesCalibracionesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -903,9 +903,9 @@
                     <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="NumCalTextField">
+                <Component class="javax.swing.JTextField" name="NumCalibracionesTextField">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumCalTextFieldActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumCalibracionesTextFieldActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -916,9 +916,9 @@
                     <Property name="text" type="java.lang.String" value="Mediciones"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="medicionesCalTextField">
+                <Component class="javax.swing.JTextField" name="medicionesCalibracionesTextField">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="medicionesCalTextFieldActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="medicionesCalibracionesTextFieldActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -929,43 +929,43 @@
                     <Property name="text" type="java.lang.String" value="Fecha"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="FechaCalTextField1">
+                <Component class="javax.swing.JTextField" name="FechaCalibracionesTextField1">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FechaCalTextField1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FechaCalibracionesTextField1ActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="guardarCalButton">
+                <Component class="javax.swing.JButton" name="guardarCalibracionButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarCalButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarCalibracionButtonActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="limpiarCalButton">
+                <Component class="javax.swing.JButton" name="limpiarCalibracionButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Limpiar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpiarCalButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpiarCalibracionButtonActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="borrarCalButton">
+                <Component class="javax.swing.JButton" name="borrarCalibracionButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Borrar"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="borrarCalButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="borrarCalibracionButtonActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1004,7 +1004,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="MedicionesLecturaTable">
+                        <Component class="javax.swing.JTable" name="MedicionesLecturaTableCalibracion">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="3" rowCount="0">
@@ -1037,7 +1037,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MedicionesLecturaTableMouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MedicionesLecturaTableCalibracionMouseClicked"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1065,7 +1065,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField3" max="32767" attributes="0"/>
+                          <Component id="InfoInstrumeCalibraTXT" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1074,16 +1074,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+                          <Component id="InfoInstrumeCalibraTXT" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="7" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField3">
+                <Component class="javax.swing.JTextField" name="InfoInstrumeCalibraTXT">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InfoInstrumeCalibraTXTActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1104,13 +1104,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="lblDescripcionB2" min="-2" max="-2" attributes="0"/>
+                          <Component id="numCalibracionLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="NumeroBusqCaliTextField" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Component id="NumeroBusqCalibracionTxtField" min="-2" pref="219" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="reporteCalButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="reporteCalibracionButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="buscarCalButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarCalibracionButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1120,10 +1120,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblDescripcionB2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="NumeroBusqCaliTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="buscarCalButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="reporteCalButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="numCalibracionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="NumeroBusqCalibracionTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="reporteCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -1131,31 +1131,31 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="lblDescripcionB2">
+                <Component class="javax.swing.JLabel" name="numCalibracionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="NumeroBusqCaliTextField">
+                <Component class="javax.swing.JTextField" name="NumeroBusqCalibracionTxtField">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumeroBusqCaliTextFieldActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NumeroBusqCalibracionTxtFieldActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="buscarCalButton">
+                <Component class="javax.swing.JButton" name="buscarCalibracionButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarCalButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarCalibracionButtonActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="reporteCalButton">
+                <Component class="javax.swing.JButton" name="reporteCalibracionButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Reporte"/>
                     <Property name="debugGraphicsOptions" type="int" value="1"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteCalButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteCalibracionButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1201,7 +1201,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable2">
+                    <Component class="javax.swing.JTable" name="listadoTableCalibracion">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="3" rowCount="0">
@@ -1234,7 +1234,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable2MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listadoTableCalibracionMouseClicked"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
