@@ -1065,7 +1065,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="InfoInstrumeCalibraTXT" max="32767" attributes="0"/>
+                          <Component id="InfoInstrumeCalibraTxt" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1074,16 +1074,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="InfoInstrumeCalibraTXT" min="-2" max="-2" attributes="0"/>
+                          <Component id="InfoInstrumeCalibraTxt" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="7" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="InfoInstrumeCalibraTXT">
+                <Component class="javax.swing.JTextField" name="InfoInstrumeCalibraTxt">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InfoInstrumeCalibraTXTActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InfoInstrumeCalibraTxtActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

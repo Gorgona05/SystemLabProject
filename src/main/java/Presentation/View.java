@@ -1,14 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Presentation;
 
+import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
@@ -17,7 +17,9 @@ import javax.xml.transform.TransformerException;
  * @author PABLO MORERA
  */
 public class View extends javax.swing.JFrame {
+    
      private Controller controladora;
+     private DefaultTableModel tableModel;
     /**
      * Creates new form View
      */
@@ -112,7 +114,7 @@ public class View extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         MedicionesLecturaTableCalibracion = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
-        InfoInstrumeCalibraTXT = new javax.swing.JTextField();
+        InfoInstrumeCalibraTxt = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
         numCalibracionLabel = new javax.swing.JLabel();
         NumeroBusqCalibracionTxtField = new javax.swing.JTextField();
@@ -726,9 +728,9 @@ public class View extends javax.swing.JFrame {
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        InfoInstrumeCalibraTXT.addActionListener(new java.awt.event.ActionListener() {
+        InfoInstrumeCalibraTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InfoInstrumeCalibraTXTActionPerformed(evt);
+                InfoInstrumeCalibraTxtActionPerformed(evt);
             }
         });
 
@@ -738,14 +740,14 @@ public class View extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(InfoInstrumeCalibraTXT)
+                .addComponent(InfoInstrumeCalibraTxt)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(InfoInstrumeCalibraTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(InfoInstrumeCalibraTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -1049,6 +1051,23 @@ public class View extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_NumCalibracionesTextFieldActionPerformed
 
+    
+    public void mostrarCalibraciones(Instrumento instrumentoSeleccionado) {
+        if (instrumentoSeleccionado != null) {
+            InfoInstrumeCalibraTxt.setText(instrumentoSeleccionado.toString());
+        }
+    }
+     private void cargarDatosInstrumentos(List<Instrumento> instrumentos) {
+        
+        for (Instrumento instrumento : instrumentos) {
+            tableModel.addRow(new Object[]{
+                instrumento.getSerie(),
+                instrumento.getDescripcion(),
+                instrumento.getMinimo(),
+                instrumento.getMaximo(),
+                instrumento.getTolerancia()
+            });}}
+    
     private void FechaCalibracionesTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCalibracionesTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FechaCalibracionesTextField1ActionPerformed
@@ -1065,9 +1084,9 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_borrarCalibracionButtonActionPerformed
 
-    private void InfoInstrumeCalibraTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoInstrumeCalibraTXTActionPerformed
+    private void InfoInstrumeCalibraTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoInstrumeCalibraTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InfoInstrumeCalibraTXTActionPerformed
+    }//GEN-LAST:event_InfoInstrumeCalibraTxtActionPerformed
 
     private void medicionesCalibracionesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicionesCalibracionesTextFieldActionPerformed
         // TODO add your handling code here:
@@ -1131,7 +1150,7 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FechaCalLabel;
     public javax.swing.JTextField FechaCalibracionesTextField1;
-    private javax.swing.JTextField InfoInstrumeCalibraTXT;
+    private javax.swing.JTextField InfoInstrumeCalibraTxt;
     private javax.swing.JLabel MedicionesCalLabel;
     public javax.swing.JTable MedicionesLecturaTableCalibracion;
     private javax.swing.JPanel MedicionesPanel;
