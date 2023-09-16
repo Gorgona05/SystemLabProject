@@ -52,5 +52,6 @@ public class ProjectMockup {
         vista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         vista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         vista.setVisible(true);
+        
     }
 }
