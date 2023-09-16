@@ -125,6 +125,17 @@ public class ServiceTipoInstrumento {
         table.addCell(codigoCell);
         table.addCell(nombreCell);
         table.addCell(unidadCell);
+        
+        for (TipoInstrumento tipoInstrumento: data.getTiposInstrumentos()){
+            table.addCell(tipoInstrumento.getCodigo());
+            table.addCell(tipoInstrumento.getNombre());
+            table.addCell(tipoInstrumento.getUnidad());
+            
+        }
+        doc.add(table);
+
+        doc.close();
+        System.out.println ("Pdf Created");
     }
     
  }
