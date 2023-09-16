@@ -7,10 +7,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import java.text.ParseException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -79,21 +84,21 @@ public class View extends javax.swing.JFrame {
         lblSerie6 = new javax.swing.JLabel();
         lblMinimo3 = new javax.swing.JLabel();
         lblTolerancia3 = new javax.swing.JLabel();
-        txtDescripcion3 = new javax.swing.JTextField();
-        txtMinimo1 = new javax.swing.JTextField();
-        txtTolerancia1 = new javax.swing.JTextField();
+        txtDescripcionInstrume = new javax.swing.JTextField();
+        txtMinimo = new javax.swing.JTextField();
+        txtTolerancia = new javax.swing.JTextField();
         lblSerie7 = new javax.swing.JLabel();
         lblSerie8 = new javax.swing.JLabel();
         lblSerie9 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        txtSerie2 = new javax.swing.JTextField();
-        txtMaximo1 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        txtSerie = new javax.swing.JTextField();
+        txtMaximo = new javax.swing.JTextField();
+        guardarInstrumButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         lblDescripcionB1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtDescripBusqInst = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jpListado1 = new javax.swing.JPanel();
@@ -346,21 +351,21 @@ public class View extends javax.swing.JFrame {
 
         lblTolerancia3.setText("Tolerancia");
 
-        txtDescripcion3.addActionListener(new java.awt.event.ActionListener() {
+        txtDescripcionInstrume.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcion3ActionPerformed(evt);
+                txtDescripcionInstrumeActionPerformed(evt);
             }
         });
 
-        txtMinimo1.addActionListener(new java.awt.event.ActionListener() {
+        txtMinimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMinimo1ActionPerformed(evt);
+                txtMinimoActionPerformed(evt);
             }
         });
 
-        txtTolerancia1.addActionListener(new java.awt.event.ActionListener() {
+        txtTolerancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTolerancia1ActionPerformed(evt);
+                txtToleranciaActionPerformed(evt);
             }
         });
 
@@ -372,15 +377,15 @@ public class View extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        txtSerie2.addActionListener(new java.awt.event.ActionListener() {
+        txtSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSerie2ActionPerformed(evt);
+                txtSerieActionPerformed(evt);
             }
         });
 
-        txtMaximo1.addActionListener(new java.awt.event.ActionListener() {
+        txtMaximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaximo1ActionPerformed(evt);
+                txtMaximoActionPerformed(evt);
             }
         });
 
@@ -395,21 +400,21 @@ public class View extends javax.swing.JFrame {
                         .addGroup(jPanel11Layout.createSequentialGroup()
                             .addComponent(lblMinimo3)
                             .addGap(18, 18, 18)
-                            .addComponent(txtMinimo1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel11Layout.createSequentialGroup()
                             .addComponent(lblTolerancia3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTolerancia1)))
+                            .addComponent(txtTolerancia)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(lblSerie6)
                         .addGap(32, 32, 32)
-                        .addComponent(txtSerie2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(lblSerie7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescripcion3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDescripcionInstrume, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSerie9)
@@ -417,7 +422,7 @@ public class View extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaximo1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -426,28 +431,28 @@ public class View extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSerie6)
-                    .addComponent(txtDescripcion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcionInstrume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSerie7)
-                    .addComponent(txtSerie2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMinimo3)
-                    .addComponent(txtMinimo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSerie8)
-                    .addComponent(txtMaximo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTolerancia3)
-                    .addComponent(txtTolerancia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSerie9)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jButton6.setText("Guardar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        guardarInstrumButton.setText("Guardar");
+        guardarInstrumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                guardarInstrumButtonActionPerformed(evt);
             }
         });
 
@@ -469,9 +474,9 @@ public class View extends javax.swing.JFrame {
 
         lblDescripcionB1.setText("Descripción");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtDescripBusqInst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtDescripBusqInstActionPerformed(evt);
             }
         });
 
@@ -498,7 +503,7 @@ public class View extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(lblDescripcionB1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDescripBusqInst, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton9)
                 .addGap(35, 35, 35)
@@ -511,7 +516,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescripcionB1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripBusqInst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9)
                     .addComponent(jButton10))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -563,7 +568,7 @@ public class View extends javax.swing.JFrame {
                             .addGap(67, 67, 67)
                             .addGroup(instrumentosPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(instrumentosPanel3Layout.createSequentialGroup()
-                                    .addComponent(jButton6)
+                                    .addComponent(guardarInstrumButton)
                                     .addGap(51, 51, 51)
                                     .addComponent(jButton7))
                                 .addComponent(jButton8)))
@@ -581,7 +586,7 @@ public class View extends javax.swing.JFrame {
                     .addGroup(instrumentosPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(instrumentosPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
+                            .addComponent(guardarInstrumButton)
                             .addComponent(jButton7))
                         .addGap(18, 18, 18)
                         .addComponent(jButton8)))
@@ -962,29 +967,41 @@ public class View extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_borrarButtonActionPerformed
 
-    private void txtDescripcion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcion3ActionPerformed
+    private void txtDescripcionInstrumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionInstrumeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcion3ActionPerformed
+    }//GEN-LAST:event_txtDescripcionInstrumeActionPerformed
 
-    private void txtMinimo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimo1ActionPerformed
+    private void txtMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMinimo1ActionPerformed
+    }//GEN-LAST:event_txtMinimoActionPerformed
 
-    private void txtTolerancia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTolerancia1ActionPerformed
+    private void txtToleranciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToleranciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTolerancia1ActionPerformed
+    }//GEN-LAST:event_txtToleranciaActionPerformed
 
-    private void txtSerie2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerie2ActionPerformed
+    private void txtSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSerie2ActionPerformed
+    }//GEN-LAST:event_txtSerieActionPerformed
 
-    private void txtMaximo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaximo1ActionPerformed
+    private void txtMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaximoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaximo1ActionPerformed
+    }//GEN-LAST:event_txtMaximoActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void guardarInstrumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarInstrumButtonActionPerformed
+        borrarButton.setEnabled(false); 
+        txtSerie.setEnabled(true); 
+        String serie = txtSerie.getText();
+        String descripcion = txtDescripcionInstrume.getText();
+        //String tipo = txtTipo.getText();
+        String minimo = txtMinimo.getText();
+        String maximo = txtMaximo.getText();
+        String tolerancia = txtTolerancia.getText();
+         try {
+           controladora.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_guardarInstrumButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -994,9 +1011,9 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtDescripBusqInstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripBusqInstActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtDescripBusqInstActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -1069,7 +1086,16 @@ public class View extends javax.swing.JFrame {
             });}}
     
     private void FechaCalibracionesTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCalibracionesTextField1ActionPerformed
-        // TODO add your handling code here:
+        String textoFecha = FechaCalibracionesTextField1.getText();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
+
+        try {
+            Date fecha = dateFormat.parse(textoFecha);
+        } catch (ParseException e) {
+            // La fecha ingresada no es válida, muestra un mensaje de error al usuario.
+            JOptionPane.showMessageDialog(null, "Fecha no válida. Ingresa una fecha en formato dd/MM/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_FechaCalibracionesTextField1ActionPerformed
 
     private void guardarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCalibracionButtonActionPerformed
@@ -1166,9 +1192,9 @@ public class View extends javax.swing.JFrame {
     public javax.swing.JTextField codigoTextField;
     public javax.swing.JButton guardarButton;
     public javax.swing.JButton guardarCalibracionButton;
+    private javax.swing.JButton guardarInstrumButton;
     private javax.swing.JPanel instrumentosPanel3;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -1194,7 +1220,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpListado1;
     private javax.swing.JLabel lblDescripcionB1;
     private javax.swing.JLabel lblMinimo3;
@@ -1214,11 +1239,12 @@ public class View extends javax.swing.JFrame {
     public javax.swing.JButton reporteButton;
     private javax.swing.JButton reporteCalibracionButton;
     private javax.swing.JPanel tiposPanel;
-    private javax.swing.JTextField txtDescripcion3;
-    private javax.swing.JTextField txtMaximo1;
-    private javax.swing.JTextField txtMinimo1;
-    private javax.swing.JTextField txtSerie2;
-    private javax.swing.JTextField txtTolerancia1;
+    private javax.swing.JTextField txtDescripBusqInst;
+    private javax.swing.JTextField txtDescripcionInstrume;
+    private javax.swing.JTextField txtMaximo;
+    private javax.swing.JTextField txtMinimo;
+    private javax.swing.JTextField txtSerie;
+    private javax.swing.JTextField txtTolerancia;
     public javax.swing.JTextField unidadTextField;
     // End of variables declaration//GEN-END:variables
 }
