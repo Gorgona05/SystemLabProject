@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Logic.Service;
 
 import Data.Data;
@@ -36,14 +33,14 @@ public class ServiceInstrumento {
      Instrumento result = data.getInstrumentos(pos).stream()
                 .filter(i->i.getSerie().equals(e.getSerie())).findFirst().orElse(null);
         if (result==null) data.getInstrumentos(pos).add(e);
-        else throw new Exception("Tipo ya existe");
+        else throw new Exception("Instrumento ya existe");
    }
 
     public Instrumento read(Instrumento e, int pos) throws Exception{
         Instrumento result = data.getInstrumentos(pos).stream()
                 .filter(i->i.getSerie().equals(e.getSerie())).findFirst().orElse(null);
         if (result!=null) return result;
-        else throw new Exception("Tipo no existe");
+        else throw new Exception("Instrumento no existe");
     }
 
     public void update(Instrumento e,int pos) throws Exception{
@@ -53,7 +50,7 @@ public class ServiceInstrumento {
             data.getInstrumentos(pos).remove(result);
             data.getInstrumentos(pos).add(e);
         }catch (Exception ex) {
-            throw new Exception("Tipo no existe");
+            throw new Exception("Instrumento no existe");
         }
     }
 

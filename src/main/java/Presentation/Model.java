@@ -5,6 +5,8 @@
 package Presentation;
 
 import Data.Data;
+import Logic.Calibraciones;
+import Logic.Service.ServiceCalibraciones;
 import Logic.Instrumento;
 import Logic.Service.ServiceInstrumento;
 import Logic.TipoInstrumento;
@@ -26,6 +28,7 @@ public class Model extends java.util.Observable{
     private TipoInstrumento actual;
     private int changedProps;
     private XMLTipoIntrumentos XMLInst;
+  //  private XMLCalibraciones XMLCali;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -36,6 +39,7 @@ public class Model extends java.util.Observable{
         dataInstrumentos = new Data();
         ServiceTipoInstrumento.instance().uptadeData(dataInstrumentos);
         ServiceInstrumento.instance().uptadeData(dataInstrumentos);
+        ServiceCalibraciones.instance().uptadeData(dataInstrumentos);
     }
     
       public void CreateUserFile()
@@ -125,4 +129,17 @@ public class Model extends java.util.Observable{
     public List<Instrumento> returnListInstrumento(String tipo){
         return dataInstrumentos.getInstrumentos( ServiceTipoInstrumento.instance().getPosicionPorNombre(tipo));
     }
+  /*  public void addCalibracion(Calibraciones calibracion) throws Exception{
+         if(ServiceCalibraciones.instance().ExistCalibraciones(calibracion)){
+           XMLCali.UpdateTipoInstrumento( calibracion);
+           ServiceCalibraciones.instance().update(calibracion);
+       }
+       else{
+            XMLCali.AddCalibracion(calibracion);
+            ServiceCalibraciones.instance().create(calibracion);
+       }
+    }*/
+        
+       
 }
+

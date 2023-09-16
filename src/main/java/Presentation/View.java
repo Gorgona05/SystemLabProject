@@ -36,7 +36,7 @@ public class View extends javax.swing.JFrame {
 
     public void UptadeTable(List<TipoInstrumento> instrumentos){
         
-        DefaultTableModel tabla = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tabla = (DefaultTableModel) tipoInstrumTable.getModel();
         tabla.setRowCount(0);
         for(int i = 0; i < instrumentos.size(); i++){
         Object[] fila = {instrumentos.get(i).getCodigo(), instrumentos.get(i).getNombre(), instrumentos.
@@ -60,6 +60,12 @@ public class View extends javax.swing.JFrame {
       codigoTextField.setText("");
       unidadTextField.setText("");
       nombreTextField.setText("");
+    }
+    
+     public void limpiarLabelsTipoCalib(){
+      NumCalibracionesTextField.setText("");
+      medicionesCalibracionesTextField.setText("");
+      FechaCalibracionesTextField1.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +95,7 @@ public class View extends javax.swing.JFrame {
         buscarButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tipoInstrumTable = new javax.swing.JTable();
         instrumentosPanel3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         lblSerie6 = new javax.swing.JLabel();
@@ -106,7 +112,7 @@ public class View extends javax.swing.JFrame {
         txtMaximo = new javax.swing.JTextField();
         guardarInstrumButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        borrarInstruButton = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         lblDescripcionB1 = new javax.swing.JLabel();
         txtDescripBusqInst = new javax.swing.JTextField();
@@ -291,7 +297,7 @@ public class View extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Listado")));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tipoInstrumTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -299,16 +305,16 @@ public class View extends javax.swing.JFrame {
                 "Codigo", "Nombre", "Unidad"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tipoInstrumTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tipoInstrumTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(tipoInstrumTable);
+        if (tipoInstrumTable.getColumnModel().getColumnCount() > 0) {
+            tipoInstrumTable.getColumnModel().getColumn(0).setResizable(false);
+            tipoInstrumTable.getColumnModel().getColumn(1).setResizable(false);
+            tipoInstrumTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -474,10 +480,10 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("Borrar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        borrarInstruButton.setText("Borrar");
+        borrarInstruButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                borrarInstruButtonActionPerformed(evt);
             }
         });
 
@@ -582,7 +588,7 @@ public class View extends javax.swing.JFrame {
                                     .addComponent(guardarInstrumButton)
                                     .addGap(51, 51, 51)
                                     .addComponent(jButton7))
-                                .addComponent(jButton8)))
+                                .addComponent(borrarInstruButton)))
                         .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jpListado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -600,7 +606,7 @@ public class View extends javax.swing.JFrame {
                             .addComponent(guardarInstrumButton)
                             .addComponent(jButton7))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8)))
+                        .addComponent(borrarInstruButton)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -955,17 +961,17 @@ public class View extends javax.swing.JFrame {
      
     }//GEN-LAST:event_guardarButtonActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void tipoInstrumTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipoInstrumTableMouseClicked
         codigoTextField.setEnabled(false); 
-        int filaSeleccionada = jTable1.getSelectedRow();
-        Object codigo = jTable1.getValueAt(filaSeleccionada, 0);
-        Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
-        Object unidad = jTable1.getValueAt(filaSeleccionada, 2);
+        int filaSeleccionada = tipoInstrumTable.getSelectedRow();
+        Object codigo = tipoInstrumTable.getValueAt(filaSeleccionada, 0);
+        Object nombre = tipoInstrumTable.getValueAt(filaSeleccionada, 1);
+        Object unidad = tipoInstrumTable.getValueAt(filaSeleccionada, 2);
         codigoTextField.setText((String) codigo);
         nombreTextField.setText((String) nombre);
         unidadTextField.setText((String) unidad);
         borrarButton.setEnabled(true); 
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_tipoInstrumTableMouseClicked
 
     private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButtonActionPerformed
          String cod = codigoTextField.getText();
@@ -999,7 +1005,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaximoActionPerformed
 
     private void guardarInstrumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarInstrumButtonActionPerformed
-       jButton8.setEnabled(false); 
+       borrarInstruButton.setEnabled(false); 
         txtSerie.setEnabled(true); 
         String serie = txtSerie.getText();
         String descripcion = txtDescripcionInstrume.getText();
@@ -1018,9 +1024,9 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void borrarInstruButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarInstruButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_borrarInstruButtonActionPerformed
 
     private void txtDescripBusqInstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripBusqInstActionPerformed
         // TODO add your handling code here:
@@ -1039,7 +1045,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       jButton8.setEnabled(false); 
+       borrarInstruButton.setEnabled(false); 
        controladora.recoverList();
        controladora.uptadeTable();
        String tipo = (String) jComboBox2.getSelectedItem();
@@ -1056,7 +1062,7 @@ public class View extends javax.swing.JFrame {
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
          String busqueda = nombreBusquedaTextField.getText().toLowerCase();
-         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+         DefaultTableModel model = (DefaultTableModel) tipoInstrumTable.getModel();
 
     model.setRowCount(0);
     
@@ -1105,18 +1111,28 @@ public class View extends javax.swing.JFrame {
         try {
             Date fecha = dateFormat.parse(textoFecha);
         } catch (ParseException e) {
-            // La fecha ingresada no es válida, muestra un mensaje de error al usuario.
             JOptionPane.showMessageDialog(null, "Fecha no válida. Ingresa una fecha en formato dd/MM/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     
     }//GEN-LAST:event_FechaCalibracionesTextField1ActionPerformed
 
     private void guardarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCalibracionButtonActionPerformed
-        // TODO add your handling code here:
+        borrarCalibracionButton.setEnabled(false); 
+        NumCalibracionesTextField.setEnabled(true); 
+        String num = NumCalibracionesTextField.getText();
+        String medicion = medicionesCalibracionesTextField.getText();
+        String fecha = nombreTextField.getText();
+         try {
+           controladora.addCalibracion(num ,fecha ,medicion);
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_guardarCalibracionButtonActionPerformed
 
     private void limpiarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarCalibracionButtonActionPerformed
-        // TODO add your handling code here:
+        limpiarLabelsTipoCalib();
+        borrarCalibracionButton.setEnabled(false); 
+        NumCalibracionesTextField.setEnabled(true); 
     }//GEN-LAST:event_limpiarCalibracionButtonActionPerformed
 
     private void borrarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCalibracionButtonActionPerformed
@@ -1199,6 +1215,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel acercaDePanel;
     public javax.swing.JButton borrarButton;
     public javax.swing.JButton borrarCalibracionButton;
+    private javax.swing.JButton borrarInstruButton;
     public javax.swing.JButton buscarButton;
     private javax.swing.JButton buscarCalibracionButton;
     private javax.swing.JPanel calibracionesPanel;
@@ -1209,7 +1226,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel instrumentosPanel3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel3;
@@ -1231,7 +1247,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel jpListado1;
     private javax.swing.JLabel lblDescripcionB1;
@@ -1251,6 +1266,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel numCalibracionLabel;
     public javax.swing.JButton reporteButton;
     private javax.swing.JButton reporteCalibracionButton;
+    public javax.swing.JTable tipoInstrumTable;
     private javax.swing.JPanel tiposPanel;
     private javax.swing.JTextField txtDescripBusqInst;
     private javax.swing.JTextField txtDescripcionInstrume;

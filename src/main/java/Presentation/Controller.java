@@ -3,6 +3,7 @@ package Presentation;
 
 import Logic.Instrumento;
 import Logic.TipoInstrumento;
+import Logic.Calibraciones;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -45,9 +46,9 @@ public class Controller {
     }
 
     public void addCalibracion(String num, String fech, String medicion)  throws Exception{
-        //mod.addCalibracion(new TipoInstrumento(cod,nom,uni));
+   //     mod.addCalibracion(new Calibraciones(/*numero, mediciones, fecha*/));
         uptadeTable();
-        vista.limpiarLabelsTipoInst();
+        vista.limpiarLabelsTipoCalib();
     }
     
     public void addInstrumento(String serie ,String tipo ,String descripcion,String minimo,String maximo,String tolerancia) throws Exception{
@@ -59,3 +60,4 @@ public class Controller {
         vista.UptadeTableInstrumento(mod.returnListInstrumento(tipo));
     }
 }
+
