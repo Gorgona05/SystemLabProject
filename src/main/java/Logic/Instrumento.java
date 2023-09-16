@@ -4,11 +4,15 @@
  */
 package Logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author PABLO MORERA
  */
-public class Instrumento extends TipoInstrumento{
+public class Instrumento {
+    private List<Calibraciones> calibraciones;
     private String serie;
     private String tipo;
     private String descripcion;
@@ -23,6 +27,7 @@ public class Instrumento extends TipoInstrumento{
         this.minimo = minimo;
         this.maximo = maximo;
         this.tolerancia = tolerancia;
+        calibraciones = new ArrayList<>(); 
     }
 
     public String getSerie() {
@@ -33,6 +38,10 @@ public class Instrumento extends TipoInstrumento{
         this.serie = serie;
     }
 
+    public List<Calibraciones>  getCalibraciones(){
+    return calibraciones;
+    }
+    
     public String getTipo() {
         return tipo;
     }

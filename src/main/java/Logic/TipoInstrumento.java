@@ -4,6 +4,8 @@
  */
 package Logic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,19 +13,25 @@ import java.util.Objects;
  * @author PABLO MORERA
  */
 public class TipoInstrumento {
-    
+    private List<Instrumento> instrumentos;
     private String codigo;
     private String nombre;
     private String unidad;
 
     public TipoInstrumento() {
         this("","","");
+        instrumentos = new ArrayList<>(); 
     }  
     
     public TipoInstrumento(String codigo, String nombre, String unidad) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.unidad = unidad;
+         instrumentos = new ArrayList<>(); 
+    }
+    
+    public List<Instrumento> getInstrumentos(){
+        return instrumentos;
     }
 
     public String getCodigo() {

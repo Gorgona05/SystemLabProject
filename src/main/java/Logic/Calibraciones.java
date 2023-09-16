@@ -9,7 +9,6 @@ package Logic;
  * @author XPC
  */
 public class Calibraciones {
-
     private int numero;
     private int mediciones;
     

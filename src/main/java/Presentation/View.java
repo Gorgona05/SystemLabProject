@@ -44,6 +44,17 @@ public class View extends javax.swing.JFrame {
         tabla.addRow(fila);
         }
     }
+    
+     public void UptadeTableInstrumento(List<Instrumento> instrumentos){
+
+        DefaultTableModel tabla = (DefaultTableModel) listaInstrumentosTabla.getModel();
+        tabla.setRowCount(0);
+        for(int i = 0; i < instrumentos.size(); i++){
+        Object[] fila = {instrumentos.get(i).getSerie(), instrumentos.get(i).getDescripcion(), instrumentos.
+                get(i).getMinimo(),instrumentos.get(i).getMaximo(),instrumentos.get(i).getTolerancia()};
+        tabla.addRow(fila);
+        }
+    }
 
     public void limpiarLabelsTipoInst(){
       codigoTextField.setText("");
@@ -375,7 +386,7 @@ public class View extends javax.swing.JFrame {
 
         lblSerie9.setText("Tipo");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Termómetro", "Item 2", "Item 3", "Item 4" }));
 
         txtSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -937,7 +948,7 @@ public class View extends javax.swing.JFrame {
         String uni = unidadTextField.getText();
         String nom = nombreTextField.getText();
          try {
-           controladora.addInstrumento(cod ,nom ,uni);
+           controladora.addTipoInstrumento(cod ,nom ,uni);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -988,16 +999,16 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaximoActionPerformed
 
     private void guardarInstrumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarInstrumButtonActionPerformed
-        borrarButton.setEnabled(false); 
+       jButton8.setEnabled(false); 
         txtSerie.setEnabled(true); 
         String serie = txtSerie.getText();
         String descripcion = txtDescripcionInstrume.getText();
-        //String tipo = txtTipo.getText();
         String minimo = txtMinimo.getText();
         String maximo = txtMaximo.getText();
         String tolerancia = txtTolerancia.getText();
+        String tipo = (String) jComboBox2.getSelectedItem();
          try {
-           controladora.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
+          controladora.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1028,9 +1039,11 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+       jButton8.setEnabled(false); 
        controladora.recoverList();
        controladora.uptadeTable();
+       String tipo = (String) jComboBox2.getSelectedItem();
+       controladora.uptadeTableInstrumento(tipo);
        borrarButton.setEnabled(false); 
       
     }//GEN-LAST:event_formWindowOpened

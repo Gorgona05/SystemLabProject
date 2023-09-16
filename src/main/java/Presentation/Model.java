@@ -5,8 +5,10 @@
 package Presentation;
 
 import Data.Data;
+import Logic.Instrumento;
+import Logic.Service.ServiceInstrumento;
 import Logic.TipoInstrumento;
-import Logic.Service;
+import Logic.Service.ServiceTipoInstrumento;
 import XML_DOM.XMLTipoIntrumentos;
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +34,8 @@ public class Model extends java.util.Observable{
     public Model() {
         changedProps = 0;
         dataInstrumentos = new Data();
-        Service.instance().uptadeData(dataInstrumentos);
+        ServiceTipoInstrumento.instance().uptadeData(dataInstrumentos);
+        ServiceInstrumento.instance().uptadeData(dataInstrumentos);
     }
     
       public void CreateUserFile()
@@ -81,29 +84,45 @@ public class Model extends java.util.Observable{
         this.changedProps = changedProps;
     }
  
-     public void addInstrumento(TipoInstrumento inst) throws Exception {
+     public void addTipoInstrumento(TipoInstrumento inst) throws Exception {
      
-       if(Service.instance().ExistInstrumento(inst)){
+       if(ServiceTipoInstrumento.instance().ExistInstrumento(inst)){
            XMLInst.UpdateTipoInstrumento( inst);
-           Service.instance().update(inst);
+           ServiceTipoInstrumento.instance().update(inst);
        }
        else{
             XMLInst.AddTipoInstrumento(inst);
-            Service.instance().create(inst);
+            ServiceTipoInstrumento.instance().create(inst);
        }
     }
      
     public List<TipoInstrumento> returnList(){
-        return dataInstrumentos.getInstrumentos();
+        return dataInstrumentos.getTiposInstrumentos();
     }
     
     public void deleteInstrumento(TipoInstrumento inst) throws TransformerException, Exception{
-        if(Service.instance().ExistInstrumento(inst)){
+        if(ServiceTipoInstrumento.instance().ExistInstrumento(inst)){
            XMLInst.deleteTipoInstrumento(inst);
-           Service.instance().delete(inst);
+           ServiceTipoInstrumento.instance().delete(inst);
         }
     }
     public void recoverList(){
         XMLInst.recoverTipoInstrumento(returnList());
+    }
+    public void addInstrumento(Instrumento instrumento) throws Exception{
+        int pos = ServiceTipoInstrumento.instance().getPosicionPorNombre(instrumento.getTipo());
+        if(pos != -1){
+        if(ServiceInstrumento.instance().ExistInstrumento(instrumento,pos)){
+//           XMLInst.UpdateInstrumento( instrumento);
+           ServiceInstrumento.instance().update(instrumento,pos);
+       }
+       else{
+//            XMLInst.AddInstrumento(instrumento);
+            ServiceInstrumento.instance().create(instrumento,pos);
+       }
+       }
+    }
+    public List<Instrumento> returnListInstrumento(String tipo){
+        return dataInstrumentos.getInstrumentos( ServiceTipoInstrumento.instance().getPosicionPorNombre(tipo));
     }
 }

@@ -4,6 +4,7 @@
  */
 package Data;
 
+import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +14,20 @@ import java.util.List;
  * @author PABLO MORERA
  */
 public class Data {
-    private List<TipoInstrumento> instrumentos; 
+    private List<TipoInstrumento> tiposInstrumentos; 
 
     public Data() {
-        instrumentos = new ArrayList<>(); 
+        tiposInstrumentos = new ArrayList<>(); 
     }
 
-    public List<TipoInstrumento> getInstrumentos() {
-        return instrumentos;
+    public List<TipoInstrumento> getTiposInstrumentos() {
+        return tiposInstrumentos;
     }
 
     public void setInstrumentos(List<TipoInstrumento> instrumentos) {
-        this.instrumentos = instrumentos;
-    }  
+        this.tiposInstrumentos = instrumentos;
+    } 
+    public List<Instrumento> getInstrumentos(int i){
+        return tiposInstrumentos.get(i).getInstrumentos();
+    }
 }

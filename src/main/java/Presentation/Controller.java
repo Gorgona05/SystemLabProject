@@ -1,6 +1,7 @@
 
 package Presentation;
 
+import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,8 +21,8 @@ public class Controller {
         mod.CreateUserFile();   
     }
     
-    public void addInstrumento(String cod,String nom,String uni) throws Exception{
-        mod.addInstrumento(new TipoInstrumento(cod,nom,uni));
+    public void addTipoInstrumento(String cod,String nom,String uni) throws Exception{
+        mod.addTipoInstrumento(new TipoInstrumento(cod,nom,uni));
         uptadeTable();
         vista.limpiarLabelsTipoInst();
     }
@@ -43,9 +44,18 @@ public class Controller {
         mod.recoverList();
     }
 
-    void addCalibracion(String num, String fech, String medicion)  throws Exception{
+    public void addCalibracion(String num, String fech, String medicion)  throws Exception{
         //mod.addCalibracion(new TipoInstrumento(cod,nom,uni));
         uptadeTable();
         vista.limpiarLabelsTipoInst();
+    }
+    
+    public void addInstrumento(String serie ,String tipo ,String descripcion,String minimo,String maximo,String tolerancia) throws Exception{
+        mod.addInstrumento(new Instrumento(serie,tipo,descripcion,minimo,maximo,tolerancia));
+        uptadeTableInstrumento(tipo);
+    }
+   
+    public void uptadeTableInstrumento(String tipo){
+        vista.UptadeTableInstrumento(mod.returnListInstrumento(tipo));
     }
 }
