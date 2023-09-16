@@ -62,7 +62,7 @@ public class View extends javax.swing.JFrame {
       nombreTextField.setText("");
     }
     
-     public void limpiarLabelsTipoCalib(){
+     public void limpiarLabelsCalib(){
       NumCalibracionesTextField.setText("");
       medicionesCalibracionesTextField.setText("");
       FechaCalibracionesTextField1.setText("");
@@ -1130,13 +1130,20 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarCalibracionButtonActionPerformed
 
     private void limpiarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarCalibracionButtonActionPerformed
-        limpiarLabelsTipoCalib();
+        limpiarLabelsCalib();
         borrarCalibracionButton.setEnabled(false); 
         NumCalibracionesTextField.setEnabled(true); 
     }//GEN-LAST:event_limpiarCalibracionButtonActionPerformed
 
     private void borrarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCalibracionButtonActionPerformed
-        // TODO add your handling code here:
+         String num = NumCalibracionesTextField.getText();
+         String mediciones = medicionesCalibracionesTextField.getText();
+         String fecha = FechaCalibracionesTextField1.getText();
+         try {
+         //    controladora.deleteInstrumento(new TipoInstrumento(cod,nom,uni));
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_borrarCalibracionButtonActionPerformed
 
     private void InfoInstrumeCalibraTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoInstrumeCalibraTxtActionPerformed

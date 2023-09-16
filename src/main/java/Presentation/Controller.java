@@ -48,7 +48,7 @@ public class Controller {
     public void addCalibracion(String num, String fech, String medicion)  throws Exception{
    //     mod.addCalibracion(new Calibraciones(/*numero, mediciones, fecha*/));
         uptadeTable();
-        vista.limpiarLabelsTipoCalib();
+        vista.limpiarLabelsCalib();
     }
     
     public void addInstrumento(String serie ,String tipo ,String descripcion,String minimo,String maximo,String tolerancia) throws Exception{
@@ -58,6 +58,12 @@ public class Controller {
    
     public void uptadeTableInstrumento(String tipo){
         vista.UptadeTableInstrumento(mod.returnListInstrumento(tipo));
+    }
+    
+    public void deleteCalibracion(Calibraciones inst) throws Exception{
+        mod.deleteCalibracion(inst);
+        uptadeTable();
+        vista.limpiarLabelsCalib();
     }
 }
 
