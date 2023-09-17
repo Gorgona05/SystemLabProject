@@ -331,7 +331,7 @@ public class XMLTipoIntrumentos {
                 attrSerie.setValue(instrumento.getSerie());
                 newInstrumento.setAttributeNode(attrSerie);
 
-                Element descripcionElement = doc.createElement("Descripcion");
+                Element descripcionElement = doc.createElement("Descripción");
                 descripcionElement.appendChild(doc.createTextNode(instrumento.getDescripcion()));
                 newInstrumento.appendChild(descripcionElement);
 
@@ -361,7 +361,51 @@ public class XMLTipoIntrumentos {
         
         return result;
     }
-     
+      public boolean UpdateInstrumento(Instrumento instrumento) throws TransformerConfigurationException, TransformerException
+    {
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile);
+            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                    //int id = Integer.parseInt(userElement.getAttribute("id"));
+                     
+                    if(instrumento.getSerie().equals(instrumentoElement.getAttribute("Serie")))
+                    {
+                        instrumentoElement.getElementsByTagName("Descripción").item(0).setTextContent(instrumento.getDescripcion());
+                        instrumentoElement.getElementsByTagName("Mínimo").item(0).setTextContent(instrumento.getMinimo()); 
+                        instrumentoElement.getElementsByTagName("Máximo").item(0).setTextContent(instrumento.getMaximo());
+                        instrumentoElement.getElementsByTagName("Tolerancia").item(0).setTextContent(instrumento.getTolerancia()); 
+                        
+               
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the instrument to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
+        }
+        
+        return result;
+    }
+     //Calibraciones
       public boolean AddCalibracion(Calibraciones calibracion ) throws TransformerConfigurationException, TransformerException
     {
        boolean result = false;
