@@ -1,6 +1,8 @@
 
 package Logic;
 
+import java.util.Objects;
+
 /**
  *
  * @author XPC
@@ -54,5 +56,29 @@ public class Calibraciones {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-        
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.numero);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Calibraciones other = (Calibraciones) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -1032,8 +1032,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaximoActionPerformed
 
     private void guardarInstrumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarInstrumButtonActionPerformed
-       borrarInstruButton.setEnabled(false); 
-        txtSerie.setEnabled(true); 
+
         String serie = txtSerie.getText();
         String descripcion = txtDescripcionInstrume.getText();
         String minimo = txtMinimo.getText();
@@ -1053,9 +1052,13 @@ public class View extends javax.swing.JFrame {
        limpiarLabelsInstr();
         borrarInstruButton.setEnabled(false); 
         txtSerie.setEnabled(true); 
+        jTabbedPane1.setEnabledAt(2, false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void borrarInstruButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarInstruButtonActionPerformed
+        txtSerie.setEnabled(true); 
+        borrarInstruButton.setEnabled(false); 
+        jTabbedPane1.setEnabledAt(2, false);
         String serie = txtSerie.getText();
         String descripcion = txtDescripcionInstrume.getText();
         String minimo = txtMinimo.getText();
@@ -1095,7 +1098,21 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void listaInstrumentosTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaInstrumentosTablaMouseClicked
-        // TODO add your handling code here:
+        txtSerie.setEnabled(false); 
+        int filaSeleccionada = listaInstrumentosTabla.getSelectedRow();
+        Object serie = listaInstrumentosTabla.getValueAt(filaSeleccionada, 0);
+        Object descripcion = listaInstrumentosTabla.getValueAt(filaSeleccionada, 1);
+        Object minimo = listaInstrumentosTabla.getValueAt(filaSeleccionada, 2);
+        Object maximo = listaInstrumentosTabla.getValueAt(filaSeleccionada, 3);
+        Object tolerancia = listaInstrumentosTabla.getValueAt(filaSeleccionada, 4);
+        
+        txtSerie.setText((String) serie);
+        txtDescripcionInstrume.setText((String) descripcion);
+        txtMinimo.setText((String) minimo);
+        txtMaximo.setText((String) maximo);
+        txtTolerancia.setText((String) tolerancia);
+        borrarInstruButton.setEnabled(true); 
+          jTabbedPane1.setEnabledAt(2, true);
     }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1111,6 +1128,8 @@ public class View extends javax.swing.JFrame {
        borrarCalibracionButton.setEnabled(false); 
        controladoraCalib.recoverList();
        controladoraCalib.uptadeTable();
+       //General
+       jTabbedPane1.setEnabledAt(2, false);
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -1118,6 +1137,7 @@ public class View extends javax.swing.JFrame {
         limpiarLabelsTipoInst();
         borrarButton.setEnabled(false); 
         codigoTextField.setEnabled(true); 
+    
     }//GEN-LAST:event_limpiarButtonActionPerformed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed

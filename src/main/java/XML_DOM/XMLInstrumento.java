@@ -123,6 +123,10 @@ public class XMLInstrumento {
                 maximoElement.appendChild(doc.createTextNode(instrumento.getMaximo()));
                 newInstrumento.appendChild(maximoElement);
                 
+                Element toleranciaElement = doc.createElement("Tolerancia");
+                toleranciaElement.appendChild(doc.createTextNode(instrumento.getTolerancia()));
+                newInstrumento.appendChild(toleranciaElement);
+                
                 Element tipoElement = doc.createElement("Tipo");
                 tipoElement.appendChild(doc.createTextNode(instrumento.getTipo()));
                 newInstrumento.appendChild(tipoElement);
@@ -247,12 +251,12 @@ public class XMLInstrumento {
                     Element instrumentoElement = (Element) instrumentoNode;
                     
                     String serie = instrumentoElement.getAttribute("Serie");
-                    String descripcion = instrumentoElement.getElementsByTagName("Descripcion").item(0).getTextContent();
+                    String descripcion = instrumentoElement.getElementsByTagName("Descripción").item(0).getTextContent();
                     String minimo = instrumentoElement.getElementsByTagName("Mínimo").item(0).getTextContent();
                     String maximo = instrumentoElement.getElementsByTagName("Máximo").item(0).getTextContent();
                     String tolerancia = instrumentoElement.getElementsByTagName("Tolerancia").item(0).getTextContent();
                     String tipo = instrumentoElement.getElementsByTagName("Tipo").item(0).getTextContent();
-                     instrumentos.add(new Instrumento(serie,tipo,descripcion,minimo,maximo,tolerancia));
+                    instrumentos.add(new Instrumento(serie,tipo,descripcion,minimo,maximo,tolerancia));
                 }
             }
             result = true;
