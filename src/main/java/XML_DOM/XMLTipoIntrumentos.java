@@ -296,17 +296,15 @@ public class XMLTipoIntrumentos {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(xmlFile);
+            Node root = doc.getElementsByTagName("LaboratorioIndustrial").item(0);
             if(!xmlFile.exists())
                 return result;
-            NodeList instrumentoNodes = doc.getElementsByTagName("Instrumento");
-            for(int i = 0; i < instrumentoNodes.getLength(); i++) {            
-                Node instrumentoNode = instrumentoNodes.item(i);
-                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element instrumentoElement = (Element) instrumentoNode;
-                    String serie = instrumentoElement.getAttribute("Serie");
-
-                    if(instrumento.getSerie().equals(serie))
-                    {
+            NodeList children = root.getChildNodes(); 
+            for (int i = 0; i < children.getLength(); i++) {
+                Node child = children.item(i);
+                if (child.getNodeType() == Node.ELEMENT_NODE) {
+                    String nodeName = child.getNodeName();
+                    if (instrumento.getTipo().equals(nodeName)) { 
                         idexist = true;
                         break;
                     }
@@ -323,30 +321,41 @@ public class XMLTipoIntrumentos {
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document doc = builder.parse(xmlFile);
                 
-                Node root = doc.getElementsByTagName(instrumento.getTipo()).item(0);
+                Node root = doc.getElementsByTagName("LaboratorioIndustrial").item(0);
+                NodeList children = root.getChildNodes(); 
 
-                Element newInstrumento = doc.createElement("Instrumento");
+                for (int i = 0; i < children.getLength(); i++) {
+                    Node child = children.item(i);
+                     Element elementChild = (Element) child;
+                    if (child.getNodeType() == Node.ELEMENT_NODE) {
+                         String nodeName = child.getNodeName();
+                          System.out.println("Instrumento Type: " + instrumento.getTipo());
+                          System.out.println("Node Name: " + elementChild.getAttribute("Nombre"));
+                    if (instrumento.getTipo().equals(nodeName)) { 
+                        Element newInstrumento = doc.createElement("Instrumento");
                 
-                Attr attrSerie = doc.createAttribute("Serie");
-                attrSerie.setValue(instrumento.getSerie());
-                newInstrumento.setAttributeNode(attrSerie);
+                        Attr attrSerie = doc.createAttribute("Serie");
+                        attrSerie.setValue(instrumento.getSerie());
+                        newInstrumento.setAttributeNode(attrSerie);
 
-                Element descripcionElement = doc.createElement("Descripción");
-                descripcionElement.appendChild(doc.createTextNode(instrumento.getDescripcion()));
-                newInstrumento.appendChild(descripcionElement);
+                        Element descripcionElement = doc.createElement("Descripción");
+                        descripcionElement.appendChild(doc.createTextNode(instrumento.getDescripcion()));
+                        newInstrumento.appendChild(descripcionElement);
 
-                Element minimoElement = doc.createElement("Mínimo");
-                minimoElement.appendChild(doc.createTextNode(instrumento.getMinimo()));
-                newInstrumento.appendChild(minimoElement);
+                        Element minimoElement = doc.createElement("Mínimo");
+                        minimoElement.appendChild(doc.createTextNode(instrumento.getMinimo()));
+                        newInstrumento.appendChild(minimoElement);
                 
-                Element maximoElement = doc.createElement("Máximo");
-                maximoElement.appendChild(doc.createTextNode(instrumento.getMaximo()));
-                newInstrumento.appendChild(maximoElement);
+                        Element maximoElement = doc.createElement("Máximo");
+                        maximoElement.appendChild(doc.createTextNode(instrumento.getMaximo()));
+                       newInstrumento.appendChild(maximoElement);
 
-                root.appendChild(newInstrumento);
-                 
-                TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                Transformer transformer = transformerFactory.newTransformer();
+                       root.appendChild(newInstrumento);
+                    }
+                    }
+                }    
+                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(doc);
                 StreamResult streamResult = new StreamResult(new File(xmlFilePath));
 

@@ -121,7 +121,7 @@ public class Model extends java.util.Observable{
            ServiceInstrumento.instance().update(instrumento,pos);
        }
        else{
-           XMLInst.AddInstrumento(instrumento);
+            XMLInst.AddInstrumento(instrumento);
             ServiceInstrumento.instance().create(instrumento,pos);
        }
        }
@@ -148,6 +148,6 @@ public class Model extends java.util.Observable{
             }
         }
     }   
-       
+ 
 }
 

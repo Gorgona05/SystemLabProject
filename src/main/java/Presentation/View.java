@@ -617,7 +617,7 @@ public class View extends javax.swing.JFrame {
                         .addComponent(borrarInstruButton)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpListado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1020,12 +1020,14 @@ public class View extends javax.swing.JFrame {
         String minimo = txtMinimo.getText();
         String maximo = txtMaximo.getText();
         String tolerancia = txtTolerancia.getText();
+        jComboBox2.setSelectedIndex(0);
         String tipo = (String) jComboBox2.getSelectedItem();
          try {
           controladora.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
+         this.limpiarLabelsInstr();
     }//GEN-LAST:event_guardarInstrumButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1053,7 +1055,20 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescripBusqInstActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+      String busqueda = txtDescripBusqInst.getText().toLowerCase();
+      DefaultTableModel model = (DefaultTableModel) listaInstrumentosTabla.getModel();
+      String tipo = (String) jComboBox2.getSelectedItem();
+    model.setRowCount(0);
+    
+    for (int i = 0; i < controladora.returnListInst(tipo).size(); i++) {
+        String Inst = controladora.returnListInst(tipo).get(i).getSerie();
+        if (Inst.toLowerCase().contains(busqueda)) 
+            model.addRow(new Object[]{controladora.returnListInst(tipo).get(i).getSerie(),
+            controladora.returnListInst(tipo).get(i).getDescripcion(),
+            controladora.returnListInst(tipo).get(i).getMinimo(),
+            controladora.returnListInst(tipo).get(i).getMaximo(),
+            controladora.returnListInst(tipo).get(i).getTolerancia()}); 
+    }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

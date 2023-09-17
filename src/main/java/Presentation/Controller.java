@@ -71,5 +71,8 @@ public class Controller {
         uptadeTable();
         vista.limpiarLabelsCalib();
     }
+       public List<Instrumento> returnListInst(String tipo){
+        return mod.returnListInstrumento(tipo);
+   }
 }
 
