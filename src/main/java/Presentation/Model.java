@@ -11,6 +11,7 @@ import Logic.Instrumento;
 import Logic.Service.ServiceInstrumento;
 import Logic.TipoInstrumento;
 import Logic.Service.ServiceTipoInstrumento;
+import XML_DOM.XMLInstrumento;
 import XML_DOM.XMLTipoIntrumentos;
 import java.io.IOException;
 import java.util.List;
@@ -28,6 +29,7 @@ public class Model extends java.util.Observable{
     private TipoInstrumento actual;
     private int changedProps;
     private XMLTipoIntrumentos XMLInst;
+    private XMLInstrumento XMLInstrumentos;
   //  private XMLCalibraciones XMLCali;
     
 //    public static int NONE=0;
@@ -44,7 +46,8 @@ public class Model extends java.util.Observable{
     
       public void CreateUserFile()
     {
-        XMLInst = new XMLTipoIntrumentos("LaboratorioIndustrial.xml");
+        XMLInst = new XMLTipoIntrumentos("TiposInstrumentos.xml");
+        XMLInstrumentos = new XMLInstrumento("Instrumentos.xml");
     }
     
     @Override
@@ -117,11 +120,11 @@ public class Model extends java.util.Observable{
         int pos = ServiceTipoInstrumento.instance().getPosicionPorNombre(instrumento.getTipo());
         if(pos != -1){
         if(ServiceInstrumento.instance().ExistInstrumento(instrumento,pos)){
-           XMLInst.UpdateInstrumento( instrumento);
+           XMLInstrumentos.UpdateInstrumento( instrumento);
            ServiceInstrumento.instance().update(instrumento,pos);
        }
        else{
-            XMLInst.AddInstrumento(instrumento);
+            XMLInstrumentos.AddInstrumento(instrumento);
             ServiceInstrumento.instance().create(instrumento,pos);
        }
        }
@@ -143,7 +146,7 @@ public class Model extends java.util.Observable{
          int pos = ServiceTipoInstrumento.instance().getPosicionPorNombre(inst.getTipo());
          if(pos != -1){
             if(ServiceInstrumento.instance().ExistInstrumento(inst,pos)){
-                XMLInst.deleteInstrumento(inst);
+                XMLInstrumentos.deleteInstrumento(inst);
                 ServiceInstrumento.instance().delete(inst,pos);
             }
         }

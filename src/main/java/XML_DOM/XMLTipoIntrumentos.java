@@ -40,7 +40,7 @@ public class XMLTipoIntrumentos {
                 DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
                 Document document = documentBuilder.newDocument();
                 
-                Element laboratorioIndustrial = document.createElement("LaboratorioIndustrial");
+                Element laboratorioIndustrial = document.createElement("TiposInstrumentos");
                 document.appendChild(laboratorioIndustrial);
                 
                 Element inst1 = document.createElement("TipoInstrumento");
@@ -137,7 +137,7 @@ public class XMLTipoIntrumentos {
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document doc = builder.parse(xmlFile);
                 
-                Node root = doc.getElementsByTagName("LaboratorioIndustrial").item(0);
+                Node root = doc.getElementsByTagName("TiposInstrumentos").item(0);
 
                 Element newInstrumento = doc.createElement("TipoInstrumento");
                 
@@ -284,210 +284,6 @@ public class XMLTipoIntrumentos {
 
         return result;
     }
-    //Instrumento
-     public boolean AddInstrumento(Instrumento instrumento) throws TransformerConfigurationException, TransformerException
-    {
-       boolean result = false;
-        boolean idexist = false;
-      
-             
-        try {
-            File xmlFile = new File(xmlFilePath);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(xmlFile);
-            Node root = doc.getElementsByTagName("LaboratorioIndustrial").item(0);
-            if(!xmlFile.exists())
-                return result;
-            NodeList children = root.getChildNodes(); 
-            for (int i = 0; i < children.getLength(); i++) {
-                Node child = children.item(i);
-                if (child.getNodeType() == Node.ELEMENT_NODE) {
-                    String nodeName = child.getNodeName();
-                    if (instrumento.getTipo().equals(nodeName)) { 
-                        idexist = true;
-                        break;
-                    }
-                }
-            }
-        } catch (ParserConfigurationException | IOException | SAXException pce) {
-         pce.printStackTrace();
-        }
-        try {
-            if(!idexist)
-            {
-                File xmlFile = new File(xmlFilePath);
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(xmlFile);
-                
-                Node root = doc.getElementsByTagName("LaboratorioIndustrial").item(0);
-                NodeList children = root.getChildNodes(); 
-
-                for (int i = 0; i < children.getLength(); i++) {
-                    Node child = children.item(i);
-                     Element elementChild = (Element) child;
-                    if (child.getNodeType() == Node.ELEMENT_NODE) {
-                         String nodeName = child.getNodeName();
-                          System.out.println("Instrumento Type: " + instrumento.getTipo());
-                          System.out.println("Node Name: " + elementChild.getAttribute("Nombre"));
-                    if (instrumento.getTipo().equals(nodeName)) { 
-                        Element newInstrumento = doc.createElement("Instrumento");
-                
-                        Attr attrSerie = doc.createAttribute("Serie");
-                        attrSerie.setValue(instrumento.getSerie());
-                        newInstrumento.setAttributeNode(attrSerie);
-
-                        Element descripcionElement = doc.createElement("Descripción");
-                        descripcionElement.appendChild(doc.createTextNode(instrumento.getDescripcion()));
-                        newInstrumento.appendChild(descripcionElement);
-
-                        Element minimoElement = doc.createElement("Mínimo");
-                        minimoElement.appendChild(doc.createTextNode(instrumento.getMinimo()));
-                        newInstrumento.appendChild(minimoElement);
-                
-                        Element maximoElement = doc.createElement("Máximo");
-                        maximoElement.appendChild(doc.createTextNode(instrumento.getMaximo()));
-                       newInstrumento.appendChild(maximoElement);
-
-                       root.appendChild(newInstrumento);
-                    }
-                    }
-                }    
-                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                 Transformer transformer = transformerFactory.newTransformer();
-                DOMSource domSource = new DOMSource(doc);
-                StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-
-                transformer.transform(domSource, streamResult);
-
-                result = true;
-            }
-
-        } catch (ParserConfigurationException | IOException | SAXException | TransformerException pce) {
-            pce.printStackTrace();
-        }
-        
-        return result;
-    }
-      public boolean UpdateInstrumento(Instrumento instrumento) throws TransformerConfigurationException, TransformerException
-    {
-        boolean result = false;
-        
-        try {
-            File xmlFile = new File(xmlFilePath);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            if(!xmlFile.exists())
-                return result;
-            Document doc = builder.parse(xmlFile);
-            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
-            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
-                Node instrumentoNode = instrumentosNodes.item(i);
-                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element instrumentoElement = (Element) instrumentoNode;
-                    //int id = Integer.parseInt(userElement.getAttribute("id"));
-                     
-                    if(instrumento.getSerie().equals(instrumentoElement.getAttribute("Serie")))
-                    {
-                        instrumentoElement.getElementsByTagName("Descripción").item(0).setTextContent(instrumento.getDescripcion());
-                        instrumentoElement.getElementsByTagName("Mínimo").item(0).setTextContent(instrumento.getMinimo()); 
-                        instrumentoElement.getElementsByTagName("Máximo").item(0).setTextContent(instrumento.getMaximo());
-                        instrumentoElement.getElementsByTagName("Tolerancia").item(0).setTextContent(instrumento.getTolerancia()); 
-                        
-               
-                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                        Transformer transformer = transformerFactory.newTransformer();
-                        DOMSource domSource = new DOMSource(doc);
-                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-                        transformer.transform(domSource, streamResult);
-                        
-                        System.out.println("Done updating the instrument to XML File");
-                        
-                        break;
-                    }
-                }
-            }
-        } catch (ParserConfigurationException | IOException | SAXException pce) {
-               pce.printStackTrace();
-        }
-        
-        return result;
-    }
-    
-    public boolean deleteInstrumento(Instrumento instrumento) throws TransformerException{
-        boolean result = false;
-        
-        try {
-            File xmlFile = new File(xmlFilePath);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            if(!xmlFile.exists())
-                return result;
-            Document doc = builder.parse(xmlFile); 
-            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
-            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
-                Node instrumentoNode = instrumentosNodes.item(i);
-                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element instrumentoElement = (Element) instrumentoNode;
-                     
-                    if(instrumento.getSerie().equals(instrumentoElement.getAttribute("Serie")))
-                    {
-                        instrumentoElement.getParentNode().removeChild( instrumentoElement);
-
-                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                        Transformer transformer = transformerFactory.newTransformer();
-                        DOMSource domSource = new DOMSource(doc);
-                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-                        transformer.transform(domSource, streamResult);
-                        
-                        System.out.println("Done updating the instrument to XML File");
-                        
-                        break;
-                    }
-                }
-            }
-        } catch (ParserConfigurationException | IOException | SAXException pce) {
-               pce.printStackTrace();
-        }
-        
-        return result;
-        
-    }
-    
-     public boolean recoverInstrumento(List<Instrumento> instrumentos) {
-        boolean result = false;
-
-        try {
-            File xmlFile = new File(xmlFilePath);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(xmlFile);
-            
-            NodeList instrumentosNodes = doc.getElementsByTagName("TipoInstrumento");
-            for (int i = 0; i < instrumentosNodes.getLength(); i++) {
-                Node instrumentoNode = instrumentosNodes.item(i);
-                if (instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element instrumentoElement = (Element) instrumentoNode;
-                    
-                    String serie = instrumentoElement.getAttribute("Serie");
-                    String descripcion = instrumentoElement.getElementsByTagName("Descripcion").item(0).getTextContent();
-                    String minimo = instrumentoElement.getElementsByTagName("Mínimo").item(0).getTextContent();
-                    String maximo = instrumentoElement.getElementsByTagName("Máximo").item(0).getTextContent();
-                    String tolerancia = instrumentoElement.getElementsByTagName("Tolerancia").item(0).getTextContent();
-                    String tipo = instrumentoElement.getElementsByTagName("Tipo").item(0).getTextContent();
-                     instrumentos.add(new Instrumento(serie,tipo,descripcion,minimo,maximo,tolerancia));
-                }
-            }
-            result = true;
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-             ex.printStackTrace();
-        }
-
-        return result;
-    }
-    
-      
      //Calibraciones
       public boolean AddCalibracion(Calibraciones calibracion ) throws TransformerConfigurationException, TransformerException
     {
