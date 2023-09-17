@@ -400,7 +400,7 @@ public class View extends javax.swing.JFrame {
 
         lblSerie9.setText("Tipo");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Termómetro", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Termómetro", "Barómetro", "Cronómetro" }));
 
         txtSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -624,7 +624,7 @@ public class View extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Instrumentos", instrumentosPanel3);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo Instrumento"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Calibración"));
 
         NumCalLabel.setText("Número");
 
@@ -756,7 +756,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Instrumento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         InfoInstrumeCalibraTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

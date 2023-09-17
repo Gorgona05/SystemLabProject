@@ -594,11 +594,10 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox2">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
+                      <StringArray count="3">
                         <StringItem index="0" value="Term&#xf3;metro"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                        <StringItem index="1" value="Bar&#xf3;metro"/>
+                        <StringItem index="2" value="Cron&#xf3;metro"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -822,7 +821,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Tipo Instrumento"/>
+                    <TitledBorder title="Calibraci&#xf3;n"/>
                   </Border>
                 </Property>
               </Properties>
@@ -1053,7 +1052,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="B&#xfa;squeda">
+                    <TitledBorder title="Instrumento">
                       <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
                     </TitledBorder>
                   </Border>
