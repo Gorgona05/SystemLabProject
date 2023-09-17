@@ -104,7 +104,7 @@ public class Model extends java.util.Observable{
         return dataInstrumentos.getTiposInstrumentos();
     }
     
-    public void deleteInstrumento(TipoInstrumento inst) throws TransformerException, Exception{
+    public void deleteTipoInstrumento(TipoInstrumento inst) throws TransformerException, Exception{
         if(ServiceTipoInstrumento.instance().ExistInstrumento(inst)){
            XMLInst.deleteTipoInstrumento(inst);
            ServiceTipoInstrumento.instance().delete(inst);
@@ -117,11 +117,11 @@ public class Model extends java.util.Observable{
         int pos = ServiceTipoInstrumento.instance().getPosicionPorNombre(instrumento.getTipo());
         if(pos != -1){
         if(ServiceInstrumento.instance().ExistInstrumento(instrumento,pos)){
-//           XMLInst.UpdateInstrumento( instrumento);
+           XMLInst.UpdateInstrumento( instrumento);
            ServiceInstrumento.instance().update(instrumento,pos);
        }
        else{
-//            XMLInst.AddInstrumento(instrumento);
+           XMLInst.AddInstrumento(instrumento);
             ServiceInstrumento.instance().create(instrumento,pos);
        }
        }
@@ -139,7 +139,15 @@ public class Model extends java.util.Observable{
             ServiceCalibraciones.instance().create(calibracion);
        }
     }*/
-        
+     public void deleteInstrumento(Instrumento inst) throws TransformerException, Exception{
+         int pos = ServiceTipoInstrumento.instance().getPosicionPorNombre(inst.getTipo());
+         if(pos != -1){
+            if(ServiceInstrumento.instance().ExistInstrumento(inst,pos)){
+                XMLInst.deleteInstrumento(inst);
+                ServiceInstrumento.instance().delete(inst,pos);
+            }
+        }
+    }   
        
 }
 

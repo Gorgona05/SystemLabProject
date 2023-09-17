@@ -62,6 +62,14 @@ public class View extends javax.swing.JFrame {
       nombreTextField.setText("");
     }
     
+    public void limpiarLabelsInstr(){
+     txtSerie.setText("");
+     txtMinimo.setText("");
+     txtTolerancia.setText("");
+     txtMaximo.setText("");
+     txtDescripcionInstrume.setText("");
+    }
+    
      public void limpiarLabelsCalib(){
       NumCalibracionesTextField.setText("");
       medicionesCalibracionesTextField.setText("");
@@ -978,7 +986,7 @@ public class View extends javax.swing.JFrame {
          String uni = unidadTextField.getText();
          String nom = nombreTextField.getText();
          try {
-             controladora.deleteInstrumento(new TipoInstrumento(cod,nom,uni));
+             controladora.deleteTipoInstrumento(new TipoInstrumento(cod,nom,uni));
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1021,11 +1029,23 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarInstrumButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+       limpiarLabelsInstr();
+        borrarInstruButton.setEnabled(false); 
+        txtSerie.setEnabled(true); 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void borrarInstruButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarInstruButtonActionPerformed
-        // TODO add your handling code here:
+        String serie = txtSerie.getText();
+        String descripcion = txtDescripcionInstrume.getText();
+        String minimo = txtMinimo.getText();
+        String maximo = txtMaximo.getText();
+        String tolerancia = txtTolerancia.getText();
+        String tipo = (String) jComboBox2.getSelectedItem();
+         try {
+              controladora.deleteInstrumento(new Instrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia));
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_borrarInstruButtonActionPerformed
 
     private void txtDescripBusqInstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripBusqInstActionPerformed

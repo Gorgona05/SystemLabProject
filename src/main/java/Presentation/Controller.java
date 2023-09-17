@@ -36,8 +36,8 @@ public class Controller {
         return mod.returnList();
    }
    
-    public void deleteInstrumento(TipoInstrumento inst) throws Exception{
-        mod.deleteInstrumento(inst);
+    public void deleteTipoInstrumento(TipoInstrumento inst) throws Exception{
+        mod.deleteTipoInstrumento(inst);
         uptadeTable();
         vista.limpiarLabelsTipoInst();
     }
@@ -54,6 +54,12 @@ public class Controller {
     public void addInstrumento(String serie ,String tipo ,String descripcion,String minimo,String maximo,String tolerancia) throws Exception{
         mod.addInstrumento(new Instrumento(serie,tipo,descripcion,minimo,maximo,tolerancia));
         uptadeTableInstrumento(tipo);
+    }
+    
+     public void deleteInstrumento(Instrumento inst) throws Exception{
+      mod.deleteInstrumento(inst);
+      uptadeTableInstrumento(inst.getTipo());
+      vista.limpiarLabelsInstr();
     }
    
     public void uptadeTableInstrumento(String tipo){
