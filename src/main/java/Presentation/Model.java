@@ -11,6 +11,7 @@ import Logic.Instrumento;
 import Logic.Service.ServiceInstrumento;
 import Logic.TipoInstrumento;
 import Logic.Service.ServiceTipoInstrumento;
+import XML_DOM.XMLCalibraciones;
 import XML_DOM.XMLInstrumento;
 import XML_DOM.XMLTipoIntrumentos;
 import java.io.IOException;
@@ -28,9 +29,9 @@ public class Model extends java.util.Observable{
     private Data dataInstrumentos;
     private TipoInstrumento actual;
     private int changedProps;
-    private XMLTipoIntrumentos XMLInst;
+    private XMLTipoIntrumentos XMLTiposInst;
     private XMLInstrumento XMLInstrumentos;
-  //  private XMLCalibraciones XMLCali;
+    private XMLCalibraciones XMLCalibraciones;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -46,8 +47,9 @@ public class Model extends java.util.Observable{
     
       public void CreateUserFile()
     {
-        XMLInst = new XMLTipoIntrumentos("TiposInstrumentos.xml");
+        XMLTiposInst = new XMLTipoIntrumentos("TiposInstrumentos.xml");
         XMLInstrumentos = new XMLInstrumento("Instrumentos.xml");
+        XMLCalibraciones = new XMLCalibraciones("Calibraciones.xml");
     }
     
     @Override
@@ -94,11 +96,11 @@ public class Model extends java.util.Observable{
      public void addTipoInstrumento(TipoInstrumento inst) throws Exception {
      
        if(ServiceTipoInstrumento.instance().ExistInstrumento(inst)){
-           XMLInst.UpdateTipoInstrumento( inst);
+           XMLTiposInst.UpdateTipoInstrumento( inst);
            ServiceTipoInstrumento.instance().update(inst);
        }
        else{
-            XMLInst.AddTipoInstrumento(inst);
+            XMLTiposInst.AddTipoInstrumento(inst);
             ServiceTipoInstrumento.instance().create(inst);
        }
     }
@@ -109,12 +111,12 @@ public class Model extends java.util.Observable{
     
     public void deleteTipoInstrumento(TipoInstrumento inst) throws TransformerException, Exception{
         if(ServiceTipoInstrumento.instance().ExistInstrumento(inst)){
-           XMLInst.deleteTipoInstrumento(inst);
+           XMLTiposInst.deleteTipoInstrumento(inst);
            ServiceTipoInstrumento.instance().delete(inst);
         }
     }
     public void recoverList(){
-        XMLInst.recoverTipoInstrumento(returnList());
+        XMLTiposInst.recoverTipoInstrumento(returnList());
     }
     public void addInstrumento(Instrumento instrumento) throws Exception{
         int pos = ServiceTipoInstrumento.instance().getPosicionPorNombre(instrumento.getTipo());
