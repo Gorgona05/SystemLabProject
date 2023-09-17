@@ -405,6 +405,80 @@ public class XMLTipoIntrumentos {
         
         return result;
     }
+    
+    public boolean deleteInstrumento(Instrumento instrumento) throws TransformerException{
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile); 
+            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                     
+                    if(instrumento.getSerie().equals(instrumentoElement.getAttribute("Serie")))
+                    {
+                        instrumentoElement.getParentNode().removeChild( instrumentoElement);
+
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the instrument to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
+        }
+        
+        return result;
+        
+    }
+    
+     public boolean recoverInstrumento(List<Instrumento> instrumentos) {
+        boolean result = false;
+
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            
+            NodeList instrumentosNodes = doc.getElementsByTagName("TipoInstrumento");
+            for (int i = 0; i < instrumentosNodes.getLength(); i++) {
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if (instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                    
+                    String serie = instrumentoElement.getAttribute("Serie");
+                    String descripcion = instrumentoElement.getElementsByTagName("Descripcion").item(0).getTextContent();
+                    String minimo = instrumentoElement.getElementsByTagName("Mínimo").item(0).getTextContent();
+                    String maximo = instrumentoElement.getElementsByTagName("Máximo").item(0).getTextContent();
+                    String tolerancia = instrumentoElement.getElementsByTagName("Tolerancia").item(0).getTextContent();
+                    String tipo = instrumentoElement.getElementsByTagName("Tipo").item(0).getTextContent();
+                     instrumentos.add(new Instrumento(serie,tipo,descripcion,minimo,maximo,tolerancia));
+                }
+            }
+            result = true;
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+             ex.printStackTrace();
+        }
+
+        return result;
+    }
+    
+      
      //Calibraciones
       public boolean AddCalibracion(Calibraciones calibracion ) throws TransformerConfigurationException, TransformerException
     {
@@ -448,7 +522,7 @@ public class XMLTipoIntrumentos {
 
                 Element newInstrumento = doc.createElement("Calibración");
                 
-                Attr attrNumero = doc.createAttribute("Numero");
+                Attr attrNumero = doc.createAttribute("Número");
                 attrNumero.setValue(calibracion.getNumero());
                 newInstrumento.setAttributeNode(attrNumero);
 
@@ -478,5 +552,117 @@ public class XMLTipoIntrumentos {
         
         return result;
     }
+    public boolean UpdateCalibracion(Calibraciones calibracion) throws TransformerConfigurationException, TransformerException
+    {
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile);
+            NodeList instrumentosNodes = doc.getElementsByTagName("Calibración");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                    //int id = Integer.parseInt(userElement.getAttribute("id"));
+                     
+                    if(calibracion.getNumero().equals(instrumentoElement.getAttribute("Número")))
+                    {
+                        instrumentoElement.getElementsByTagName("Fecha").item(0).setTextContent(calibracion.getFecha());
+                        instrumentoElement.getElementsByTagName("Mediciones").item(0).setTextContent(calibracion.getMediciones()); 
+                       
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the instrument to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    public boolean deleteCalibracion(Calibraciones calibracion) throws TransformerException{
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile); 
+            NodeList instrumentosNodes = doc.getElementsByTagName("Calibración");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                     
+                    if(calibracion.getNumero().equals(instrumentoElement.getAttribute("Número")))
+                    {
+                        instrumentoElement.getParentNode().removeChild( instrumentoElement);
+
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the instrument to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
+        }
+        
+        return result;
+        
+    }
+    
+     public boolean recoverCalibracion(List<Calibraciones> calibraciones) {
+        boolean result = false;
+
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            
+            NodeList instrumentosNodes = doc.getElementsByTagName("TipoInstrumento");
+            for (int i = 0; i < instrumentosNodes.getLength(); i++) {
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if (instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                    
+                    String numero = instrumentoElement.getAttribute("Número");
+                    String fecha = instrumentoElement.getElementsByTagName("Fecha").item(0).getTextContent();
+                    String mediciones = instrumentoElement.getElementsByTagName("Mediciones").item(0).getTextContent();
+                    String tipo = instrumentoElement.getElementsByTagName("Tipo").item(0).getTextContent();
+                    calibraciones.add(new Calibraciones(numero, fecha, mediciones,tipo));
+                }
+            }
+            result = true;
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+             ex.printStackTrace();
+        }
+
+        return result;
+    }
+    
 }
 
