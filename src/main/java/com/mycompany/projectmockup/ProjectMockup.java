@@ -10,7 +10,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
-import Presentation.Controller;
+import Presentation.Controller.ControllerTipoInstrumento;
 import Presentation.View;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,7 +46,7 @@ public class ProjectMockup {
         document.close();
         
         View vista = new View();
-        Controller ctrl = new Controller(vista);
+        ControllerTipoInstrumento ctrl = new ControllerTipoInstrumento(vista);
         vista.setTitle("Sistema Laboratorios");
         vista.setLocationRelativeTo(null);
         vista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

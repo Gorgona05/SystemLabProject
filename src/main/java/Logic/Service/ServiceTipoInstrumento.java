@@ -4,7 +4,7 @@
  */
 package Logic.Service;
 
-import Data.Data;
+import Data.DataTipoInstrumento;
 import Logic.TipoInstrumento;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -36,12 +36,12 @@ public class ServiceTipoInstrumento {
         if (theInstance == null) theInstance = new ServiceTipoInstrumento();
         return theInstance;
     }
-    private Data data;
+    private DataTipoInstrumento data;
 
     private ServiceTipoInstrumento(){
     }
     
-    public void uptadeData(Data dat){
+    public void uptadeData(DataTipoInstrumento dat){
         data = dat;
     }
 
@@ -89,16 +89,6 @@ public class ServiceTipoInstrumento {
         else
             return false;
     }
-    public int getPosicionPorNombre(String nombre) {
-        List<TipoInstrumento> instrumentos = data.getTiposInstrumentos();
-
-        for (int i = 0; i < instrumentos.size(); i++) {
-            if (instrumentos.get(i).getNombre().equals(nombre)) {
-                return i;              }
-        }
-        return -1;  
-    }
-    
     public void reporteTiposInstrumento() throws FileNotFoundException, DocumentException{
         Format f = new SimpleDateFormat("dd/MM/yy"); 
         FileOutputStream file = new FileOutputStream("Reporte Tipos de Instrumento.pdf");

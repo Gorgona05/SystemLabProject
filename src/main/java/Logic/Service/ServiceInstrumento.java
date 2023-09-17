@@ -1,9 +1,8 @@
 
 package Logic.Service;
 
-import Data.Data;
+import Data.DataInstrumento;
 import Logic.Instrumento;
-import Logic.TipoInstrumento;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class ServiceInstrumento {
      private static ServiceInstrumento theInstance;
-      private Data data;
+      private DataInstrumento data;
 
     public static ServiceInstrumento instance(){
         if (theInstance == null) theInstance = new ServiceInstrumento();
@@ -24,52 +23,53 @@ public class ServiceInstrumento {
     private ServiceInstrumento(){
     }
     
-    public void uptadeData(Data dat){
+    public void uptadeData(DataInstrumento dat){
         data = dat;
     }
 
     //================= TIPOS DE INSTRUMENTO ============
-   public void create(Instrumento e, int pos) throws Exception {
-     Instrumento result = data.getInstrumentos(pos).stream()
+   public void create(Instrumento e) throws Exception{
+        Instrumento result = data.getInstrumento().stream()
                 .filter(i->i.getSerie().equals(e.getSerie())).findFirst().orElse(null);
-        if (result==null) data.getInstrumentos(pos).add(e);
-        else throw new Exception("Instrumento ya existe");
-   }
-
-    public Instrumento read(Instrumento e, int pos) throws Exception{
-        Instrumento result = data.getInstrumentos(pos).stream()
-                .filter(i->i.getSerie().equals(e.getSerie())).findFirst().orElse(null);
-        if (result!=null) return result;
-        else throw new Exception("Instrumento no existe");
+        if (result==null) data.getInstrumento().add(e);
+        else throw new Exception("Tipo ya existe");
     }
 
-    public void update(Instrumento e,int pos) throws Exception{
+    public Instrumento read(Instrumento e) throws Exception{
+        Instrumento result = data.getInstrumento().stream()
+                .filter(i->i.getSerie().equals(e.getSerie())).findFirst().orElse(null);
+        if (result!=null) return result;
+        else throw new Exception("Tipo no existe");
+    }
+
+    public void update(Instrumento e) throws Exception{
         Instrumento result;
         try{
-            result = this.read(e, pos);
-            data.getInstrumentos(pos).remove(result);
-            data.getInstrumentos(pos).add(e);
+            result = this.read(e);
+            data.getInstrumento().remove(result);
+            data.getInstrumento().add(e);
         }catch (Exception ex) {
-            throw new Exception("Instrumento no existe");
+            throw new Exception("Tipo no existe");
         }
     }
 
-    public void delete(Instrumento e,int pos) throws Exception{
-        data.getInstrumentos(pos).remove(e);
+    public void delete(Instrumento e) throws Exception{
+        data.getInstrumento().remove(e);
      }
 
-    public List<Instrumento> search(Instrumento e, int pos){
-        return data.getInstrumentos(pos).stream()
+    public List<Instrumento> search(Instrumento e){
+        return data.getInstrumento().stream()
                 .filter(i->i.getSerie().contains(e.getSerie()))
                 .sorted(Comparator.comparing(Instrumento::getSerie))
                 .collect(Collectors.toList());
     }
-    public boolean ExistInstrumento(Instrumento e, int pos){
-        Instrumento result = data.getInstrumentos(pos).stream()
+    public boolean ExistInstrumento(Instrumento e){
+        Instrumento result = data.getInstrumento().stream()
                 .filter(i->i.getSerie().equals(e.getSerie())).findFirst().orElse(null);
         if (result!=null) 
                 return true;
         else
             return false;
-    }
+    } 
+
 }

@@ -1,8 +1,12 @@
 
 package Presentation;
 
+import Logic.Calibraciones;
+import Presentation.Controller.ControllerTipoInstrumento;
 import Logic.Instrumento;
 import Logic.TipoInstrumento;
+import Presentation.Controller.ControllerCalibraciones;
+import Presentation.Controller.ControllerInstrumento;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,18 +27,21 @@ import java.util.Date;
  */
 public class View extends javax.swing.JFrame {
     
-     private Controller controladora;
+     private ControllerTipoInstrumento controladoraTipoInst;
+     private ControllerInstrumento controladoraInst;
+     private ControllerCalibraciones controladoraCalib;
      private DefaultTableModel tableModel;
     /**
      * Creates new form View
      */
     public View() {
         initComponents();
-        controladora = new Controller(this);
+        controladoraTipoInst = new ControllerTipoInstrumento(this);
+        controladoraInst = new ControllerInstrumento(this);
+        controladoraCalib = new ControllerCalibraciones(this);
     }
-    
-
-    public void UptadeTable(List<TipoInstrumento> instrumentos){
+  
+    public void UptadeTableTipoInstrumento(List<TipoInstrumento> instrumentos){
         
         DefaultTableModel tabla = (DefaultTableModel) tipoInstrumTable.getModel();
         tabla.setRowCount(0);
@@ -55,6 +62,18 @@ public class View extends javax.swing.JFrame {
         tabla.addRow(fila);
         }
     }
+     
+    public void UptadeTableCalibraciones(List<Calibraciones> calibraciones){
+
+        DefaultTableModel tabla = (DefaultTableModel) listadoTableCalibracion.getModel();
+        tabla.setRowCount(0);
+        for(int i = 0; i < calibraciones.size(); i++){
+        Object[] fila = {calibraciones.get(i).getNumero(), calibraciones.get(i).getFecha(), 
+            calibraciones.get(i).getMediciones()};
+        tabla.addRow(fila);
+        }
+    }
+
 
     public void limpiarLabelsTipoInst(){
       codigoTextField.setText("");
@@ -962,7 +981,7 @@ public class View extends javax.swing.JFrame {
         String uni = unidadTextField.getText();
         String nom = nombreTextField.getText();
          try {
-           controladora.addTipoInstrumento(cod ,nom ,uni);
+           controladoraTipoInst.addTipoInstrumento(cod ,nom ,uni);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -986,7 +1005,7 @@ public class View extends javax.swing.JFrame {
          String uni = unidadTextField.getText();
          String nom = nombreTextField.getText();
          try {
-             controladora.deleteTipoInstrumento(new TipoInstrumento(cod,nom,uni));
+             controladoraTipoInst.deleteTipoInstrumento(new TipoInstrumento(cod,nom,uni));
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1023,7 +1042,7 @@ public class View extends javax.swing.JFrame {
         jComboBox2.setSelectedIndex(0);
         String tipo = (String) jComboBox2.getSelectedItem();
          try {
-          controladora.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
+          controladoraInst.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1044,7 +1063,7 @@ public class View extends javax.swing.JFrame {
         String tolerancia = txtTolerancia.getText();
         String tipo = (String) jComboBox2.getSelectedItem();
          try {
-              controladora.deleteInstrumento(new Instrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia));
+              controladoraInst.deleteInstrumento(new Instrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia));
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1055,20 +1074,20 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescripBusqInstActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-      String busqueda = txtDescripBusqInst.getText().toLowerCase();
-      DefaultTableModel model = (DefaultTableModel) listaInstrumentosTabla.getModel();
-      String tipo = (String) jComboBox2.getSelectedItem();
-    model.setRowCount(0);
+        String busqueda = txtDescripBusqInst.getText().toLowerCase();
+        DefaultTableModel model = (DefaultTableModel) listaInstrumentosTabla.getModel();
+
+        model.setRowCount(0);
     
-    for (int i = 0; i < controladora.returnListInst(tipo).size(); i++) {
-        String Inst = controladora.returnListInst(tipo).get(i).getSerie();
-        if (Inst.toLowerCase().contains(busqueda)) 
-            model.addRow(new Object[]{controladora.returnListInst(tipo).get(i).getSerie(),
-            controladora.returnListInst(tipo).get(i).getDescripcion(),
-            controladora.returnListInst(tipo).get(i).getMinimo(),
-            controladora.returnListInst(tipo).get(i).getMaximo(),
-            controladora.returnListInst(tipo).get(i).getTolerancia()}); 
-    }
+         for (int i = 0; i < controladoraInst.returnList().size(); i++) {
+            String tipInst = controladoraInst.returnList().get(i).getSerie();
+            if (tipInst.toLowerCase().contains(busqueda)) 
+                model.addRow(new Object[]{controladoraInst.returnList().get(i).getSerie(),
+                controladoraInst.returnList().get(i).getDescripcion(),
+                controladoraInst.returnList().get(i).getMinimo(),
+                controladoraInst.returnList().get(i).getMaximo(),
+                controladoraInst.returnList().get(i).getTolerancia()}); 
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1080,13 +1099,19 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       borrarInstruButton.setEnabled(false); 
-       controladora.recoverList();
-       controladora.uptadeTable();
-       String tipo = (String) jComboBox2.getSelectedItem();
-       controladora.uptadeTableInstrumento(tipo);
+      //Tipo Instrumento
        borrarButton.setEnabled(false); 
-      
+       controladoraTipoInst.recoverList();
+       controladoraTipoInst.uptadeTable();
+       //Intrumento
+       borrarInstruButton.setEnabled(false); 
+       controladoraInst.recoverList();
+       controladoraInst.uptadeTable();
+       //Calibraciones
+       borrarCalibracionButton.setEnabled(false); 
+       controladoraCalib.recoverList();
+       controladoraCalib.uptadeTable();
+
     }//GEN-LAST:event_formWindowOpened
 
     private void limpiarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarButtonActionPerformed
@@ -1101,11 +1126,12 @@ public class View extends javax.swing.JFrame {
 
     model.setRowCount(0);
     
-    for (int i = 0; i < controladora.returnList().size(); i++) {
-        String tipInst = controladora.returnList().get(i).getNombre();
+    for (int i = 0; i < controladoraTipoInst.returnList().size(); i++) {
+        String tipInst = controladoraTipoInst.returnList().get(i).getNombre();
         if (tipInst.toLowerCase().contains(busqueda)) 
-            model.addRow(new Object[]{controladora.returnList().get(i).getCodigo(),
-            controladora.returnList().get(i).getNombre(),controladora.returnList().get(i).getUnidad()}); 
+            model.addRow(new Object[]{controladoraTipoInst.returnList().get(i).getCodigo(),
+            controladoraTipoInst.returnList().get(i).getNombre(),
+            controladoraTipoInst.returnList().get(i).getUnidad()}); 
     }
     }//GEN-LAST:event_buscarButtonActionPerformed
 
@@ -1116,7 +1142,7 @@ public class View extends javax.swing.JFrame {
         String fech = FechaCalibracionesTextField1.getText();
         String medicion = medicionesCalibracionesTextField.getText();
          try {
-           controladora.addCalibracion(num ,fech ,medicion);
+          // controladoraCalib.addCalibracion(num ,fech ,medicion);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1158,7 +1184,7 @@ public class View extends javax.swing.JFrame {
         String medicion = medicionesCalibracionesTextField.getText();
         String fecha = nombreTextField.getText();
          try {
-           controladora.addCalibracion(num ,fecha ,medicion);
+           //controladoraCalib.addCalibracion(num ,fecha ,medicion);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }

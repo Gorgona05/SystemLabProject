@@ -9,14 +9,17 @@ import java.util.List;
  * @author PABLO MORERA
  */
 public class Instrumento {
-    private List<Calibraciones> calibraciones;
     private String serie;
     private String tipo;
     private String descripcion;
     private String minimo;
     private String maximo;
     private String tolerancia;
-
+    
+     public Instrumento() {
+        this("","","","","","");
+    }  
+        
     public Instrumento(String serie, String tipo, String descripcion, String minimo, String maximo, String tolerancia) {
         this.serie = serie;
         this.tipo = tipo;
@@ -24,7 +27,6 @@ public class Instrumento {
         this.minimo = minimo;
         this.maximo = maximo;
         this.tolerancia = tolerancia;
-        calibraciones = new ArrayList<>(); 
     }
 
     public String getSerie() {
@@ -35,10 +37,6 @@ public class Instrumento {
         this.serie = serie;
     }
 
-    public List<Calibraciones>  getCalibraciones(){
-    return calibraciones;
-    }
-    
     public String getTipo() {
         return tipo;
     }
