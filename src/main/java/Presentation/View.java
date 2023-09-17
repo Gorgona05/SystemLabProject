@@ -49,6 +49,7 @@ public class View extends javax.swing.JFrame {
         Object[] fila = {instrumentos.get(i).getCodigo(), instrumentos.get(i).getNombre(), instrumentos.
                 get(i).getUnidad()};
         tabla.addRow(fila);
+         jComboBox2.addItem(instrumentos.get(i).getNombre());
         }
     }
     
@@ -418,8 +419,6 @@ public class View extends javax.swing.JFrame {
         lblSerie8.setText("Máximo");
 
         lblSerie9.setText("Tipo");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Termómetro", "Barómetro", "Cronómetro" }));
 
         txtSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

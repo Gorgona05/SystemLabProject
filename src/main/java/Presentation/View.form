@@ -594,11 +594,7 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox2">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Term&#xf3;metro"/>
-                        <StringItem index="1" value="Bar&#xf3;metro"/>
-                        <StringItem index="2" value="Cron&#xf3;metro"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
