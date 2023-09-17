@@ -44,7 +44,7 @@ public class Model extends java.util.Observable{
     
       public void CreateUserFile()
     {
-        XMLInst = new XMLTipoIntrumentos("Instrumentos.xml");
+        XMLInst = new XMLTipoIntrumentos("LaboratorioIndustrial.xml");
     }
     
     @Override

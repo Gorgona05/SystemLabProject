@@ -61,7 +61,7 @@ public class Controller {
     }
     
     public void deleteCalibracion(Calibraciones inst) throws Exception{
-        mod.deleteCalibracion(inst);
+        //mod.deleteCalibracion(inst);
         uptadeTable();
         vista.limpiarLabelsCalib();
     }
