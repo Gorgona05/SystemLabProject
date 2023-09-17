@@ -828,23 +828,23 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="NumCalLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="NumCalibracionesTextField" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="FechaCalLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="FechaCalibracionesTextField1" min="-2" pref="101" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="MedicionesCalLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="medicionesCalibracionesTextField" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="NumCalLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="NumCalibracionesTextField" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="FechaCalLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="fechaTextField" min="-2" pref="99" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="32767" attributes="0"/>
                           <Component id="MedicionesPanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="guardarCalibracionButton" min="-2" max="-2" attributes="0"/>
                               <Component id="borrarCalibracionButton" min="-2" max="-2" attributes="0"/>
@@ -858,36 +858,33 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="guardarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="limpiarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="NumCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="NumCalibracionesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="FechaCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fechaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="borrarCalibracionButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="MedicionesCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="medicionesCalibracionesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="96" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="NumCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="NumCalibracionesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="FechaCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="FechaCalibracionesTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="guardarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="limpiarCalibracionButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="MedicionesCalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="medicionesCalibracionesTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="borrarCalibracionButton" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="MedicionesPanel" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="MedicionesPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -923,14 +920,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fecha"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="FechaCalibracionesTextField1">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FechaCalibracionesTextField1ActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="guardarCalibracionButton">
                   <Properties>
@@ -972,7 +961,7 @@
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder>
                           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder title="Listado"/>
+                            <TitledBorder title="Mediciones"/>
                           </Border>
                         </TitledBorder>
                       </Border>
@@ -1042,6 +1031,16 @@
                     </Container>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JFormattedTextField" name="fechaTextField">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                      <Format subtype="1" type="1"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fechaTextFieldActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel13">

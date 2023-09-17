@@ -93,7 +93,7 @@ public class View extends javax.swing.JFrame {
      public void limpiarLabelsCalib(){
       NumCalibracionesTextField.setText("");
       medicionesCalibracionesTextField.setText("");
-      FechaCalibracionesTextField1.setText("");
+      fechaTextField.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,13 +156,13 @@ public class View extends javax.swing.JFrame {
         MedicionesCalLabel = new javax.swing.JLabel();
         medicionesCalibracionesTextField = new javax.swing.JTextField();
         FechaCalLabel = new javax.swing.JLabel();
-        FechaCalibracionesTextField1 = new javax.swing.JTextField();
         guardarCalibracionButton = new javax.swing.JButton();
         limpiarCalibracionButton = new javax.swing.JButton();
         borrarCalibracionButton = new javax.swing.JButton();
         MedicionesPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         MedicionesLecturaTableCalibracion = new javax.swing.JTable();
+        fechaTextField = new javax.swing.JFormattedTextField();
         jPanel13 = new javax.swing.JPanel();
         InfoInstrumeCalibraTxt = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
@@ -662,12 +662,6 @@ public class View extends javax.swing.JFrame {
 
         FechaCalLabel.setText("Fecha");
 
-        FechaCalibracionesTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaCalibracionesTextField1ActionPerformed(evt);
-            }
-        });
-
         guardarCalibracionButton.setText("Guardar");
         guardarCalibracionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -690,7 +684,7 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        MedicionesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Listado")));
+        MedicionesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mediciones")));
 
         MedicionesLecturaTableCalibracion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -718,6 +712,13 @@ public class View extends javax.swing.JFrame {
             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
         );
 
+        fechaTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        fechaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechaTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -725,20 +726,20 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(MedicionesCalLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medicionesCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(NumCalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NumCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(FechaCalLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(FechaCalibracionesTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(MedicionesCalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(medicionesCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FechaCalLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fechaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(MedicionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(guardarCalibracionButton)
                     .addComponent(borrarCalibracionButton))
@@ -749,29 +750,27 @@ public class View extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarCalibracionButton)
-                    .addComponent(limpiarCalibracionButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(borrarCalibracionButton)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(NumCalLabel)
+                    .addComponent(NumCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FechaCalLabel)
+                    .addComponent(fechaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MedicionesCalLabel)
+                    .addComponent(medicionesCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(96, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NumCalLabel)
-                            .addComponent(NumCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FechaCalLabel)
-                            .addComponent(FechaCalibracionesTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MedicionesCalLabel)
-                            .addComponent(medicionesCalibracionesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(MedicionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(guardarCalibracionButton)
+                            .addComponent(limpiarCalibracionButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(borrarCalibracionButton))
+                    .addComponent(MedicionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Instrumento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -1111,7 +1110,8 @@ public class View extends javax.swing.JFrame {
         txtMaximo.setText((String) maximo);
         txtTolerancia.setText((String) tolerancia);
         borrarInstruButton.setEnabled(true); 
-          jTabbedPane1.setEnabledAt(2, true);
+        jTabbedPane1.setEnabledAt(2, true);
+        
     }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1158,10 +1158,10 @@ public class View extends javax.swing.JFrame {
         borrarButton.setEnabled(false); 
         NumCalibracionesTextField.setEnabled(true); 
         String num = NumCalibracionesTextField.getText();
-        String fech = FechaCalibracionesTextField1.getText();
+        String fech = fechaTextField.getText();
         String medicion = medicionesCalibracionesTextField.getText();
          try {
-          // controladoraCalib.addCalibracion(num ,fech ,medicion);
+           controladoraCalib.addCalibracion(num ,fech ,medicion);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1184,26 +1184,15 @@ public class View extends javax.swing.JFrame {
                 instrumento.getTolerancia()
             });}}
     
-    private void FechaCalibracionesTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaCalibracionesTextField1ActionPerformed
-        String textoFecha = FechaCalibracionesTextField1.getText();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
-
-        try {
-            Date fecha = dateFormat.parse(textoFecha);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "Fecha no válida. Ingresa una fecha en formato dd/MM/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    
-    }//GEN-LAST:event_FechaCalibracionesTextField1ActionPerformed
-
     private void guardarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCalibracionButtonActionPerformed
         borrarCalibracionButton.setEnabled(false); 
         NumCalibracionesTextField.setEnabled(true); 
         String num = NumCalibracionesTextField.getText();
+        String fecha = fechaTextField.getText();
         String medicion = medicionesCalibracionesTextField.getText();
-        String fecha = nombreTextField.getText();
+        
          try {
-           //controladoraCalib.addCalibracion(num ,fecha ,medicion);
+           controladoraCalib.addCalibracion(num ,fecha ,medicion);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -1218,7 +1207,7 @@ public class View extends javax.swing.JFrame {
     private void borrarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCalibracionButtonActionPerformed
          String num = NumCalibracionesTextField.getText();
          String mediciones = medicionesCalibracionesTextField.getText();
-         String fecha = FechaCalibracionesTextField1.getText();
+         String fecha = fechaTextField.getText();
          try {
          //    controladora.deleteInstrumento(new TipoInstrumento(cod,nom,uni));
          } catch (Exception ex) {
@@ -1247,12 +1236,16 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_reporteCalibracionButtonActionPerformed
 
     private void listadoTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listadoTableCalibracionMouseClicked
-   
+         MedicionesPanel.setVisible(true);
     }//GEN-LAST:event_listadoTableCalibracionMouseClicked
 
     private void MedicionesLecturaTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableCalibracionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_MedicionesLecturaTableCalibracionMouseClicked
+
+    private void fechaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1291,7 +1284,6 @@ public class View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FechaCalLabel;
-    public javax.swing.JTextField FechaCalibracionesTextField1;
     private javax.swing.JTextField InfoInstrumeCalibraTxt;
     private javax.swing.JLabel MedicionesCalLabel;
     public javax.swing.JTable MedicionesLecturaTableCalibracion;
@@ -1307,6 +1299,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton buscarCalibracionButton;
     private javax.swing.JPanel calibracionesPanel;
     public javax.swing.JTextField codigoTextField;
+    private javax.swing.JFormattedTextField fechaTextField;
     public javax.swing.JButton guardarButton;
     public javax.swing.JButton guardarCalibracionButton;
     private javax.swing.JButton guardarInstrumButton;

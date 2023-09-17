@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package XML_DOM;
 
 import Logic.Calibraciones;
@@ -119,9 +116,6 @@ public class XMLCalibraciones {
                 medicionesElement.appendChild(doc.createTextNode(calibracion.getMediciones()));
                 newInstrumento.appendChild(medicionesElement);
                 
-                Element tipoElement = doc.createElement("Tipo");
-                tipoElement.appendChild(doc.createTextNode(calibracion.getTipo()));
-                newInstrumento.appendChild(tipoElement);
      
                 root.appendChild(newInstrumento);
                  
@@ -163,7 +157,7 @@ public class XMLCalibraciones {
                     {
                         instrumentoElement.getElementsByTagName("Fecha").item(0).setTextContent(calibracion.getFecha());
                         instrumentoElement.getElementsByTagName("Mediciones").item(0).setTextContent(calibracion.getMediciones());
-                        instrumentoElement.getElementsByTagName("Tipo").item(0).setTextContent(calibracion.getTipo());
+                        
                        
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
                         Transformer transformer = transformerFactory.newTransformer();
@@ -243,7 +237,7 @@ public class XMLCalibraciones {
                     String fecha = instrumentoElement.getElementsByTagName("Fecha").item(0).getTextContent();
                     String mediciones = instrumentoElement.getElementsByTagName("Mediciones").item(0).getTextContent();
                     String tipo = instrumentoElement.getElementsByTagName("Tipo").item(0).getTextContent();
-                    calibraciones.add(new Calibraciones(numero, fecha, mediciones,tipo));
+                    calibraciones.add(new Calibraciones(numero, fecha, mediciones));
                 }
             }
             result = true;
