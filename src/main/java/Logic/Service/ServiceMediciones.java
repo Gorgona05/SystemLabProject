@@ -39,15 +39,15 @@ public class ServiceMediciones {
     }
 
     //================= TIPOS DE INSTRUMENTO ============
-   public void create(int rangMinimo, int rangMaximo, int medicion,String tipo) throws TransformerException, TransformerConfigurationException, SAXException, IOException{
+   public void create(int rangMinimo, int rangMaximo, int medicion,String tipo) throws TransformerException, TransformerConfigurationException, SAXException, IOException {
         int cont = 1;
         if (medicion > rangMinimo || medicion < rangMaximo) {
             int tamañoParte = (rangMaximo - rangMinimo) / medicion;
         for (int i = rangMinimo; i < rangMaximo; i += tamañoParte) {
              String referencia = String.valueOf(i);
              String medida = String.valueOf(cont);
-            data.getMediciones().add(new Mediciones(medida, referencia," ",tipo));
-            XMLMediciones.AddMediciones(new Mediciones(medida, referencia," ",tipo));
+            data.getMediciones().add(new Mediciones(medida, referencia,"",tipo));
+            XMLMediciones.AddMediciones(new Mediciones(medida, referencia,"",tipo));
             cont++;   
         }
         }
@@ -66,6 +66,7 @@ public class ServiceMediciones {
             result = this.read(e);
             data.getMediciones().remove(result);
             data.getMediciones().add(e);
+            this.XMLMediciones.UpdateMediciones(e);
         }catch (Exception ex) {
             throw new Exception("Tipo no existe");
         }
@@ -82,5 +83,17 @@ public class ServiceMediciones {
 
         return mediciones;
     }
+    
+      public boolean ExistMedicion(Mediciones e){
+        Mediciones result = data.getMediciones().stream()
+                .filter(i->i.getMedida().equals(e.getMedida())).findFirst().orElse(null);
+        if (result!=null) 
+                return true;
+        else
+            return false;
+    } 
 
+    public void delete(Mediciones e) throws Exception{
+        data.getMediciones().remove(e);
+     }
 }

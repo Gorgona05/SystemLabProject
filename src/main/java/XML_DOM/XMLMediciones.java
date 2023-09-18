@@ -140,4 +140,46 @@ public class XMLMediciones {
         
         return result;
     }
+    
+      public boolean UpdateMediciones(Mediciones medicion) throws TransformerConfigurationException, TransformerException
+    {
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile);
+            NodeList instrumentosNodes = doc.getElementsByTagName("Medición");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                     
+                    if(medicion.getMedida().equals(instrumentoElement.getAttribute("Medida")))
+                    {
+                        instrumentoElement.getElementsByTagName("Referencia").item(0).setTextContent(medicion.getReferencia());
+                        instrumentoElement.getElementsByTagName("Lectura").item(0).setTextContent(medicion.getLectura()); 
+
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the instrument to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
+        }
+        
+        return result;
+    }
+    
 }

@@ -4,6 +4,7 @@
  */
 package Presentation.Controller;
 
+import Logic.Mediciones;
 import Presentation.Model.ModelMediciones;
 import Presentation.View;
 import java.io.IOException;
@@ -27,11 +28,13 @@ public class ControllerMediciones {
     public void addMediciones(int rangMinimo, int rangMaximo, int medicion,
             String tipo) throws TransformerException, TransformerConfigurationException, SAXException, IOException{
         mod.addMediciones(rangMinimo,rangMaximo,medicion,tipo);
-        uptadeTable(tipo);
     }
     
     public void uptadeTable(String tipo){
         vista.UptadeTableMediciones(mod.listEspecifica(tipo));
     }
     
+    public void uptadeMediciones(String medida,String referencia,String lectura,String numero) throws Exception{
+        mod.uptadeMediciones(new Mediciones(medida,referencia,lectura,numero));
+    }
 }

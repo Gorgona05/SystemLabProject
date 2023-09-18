@@ -87,4 +87,15 @@ public class ModelMediciones extends java.util.Observable  {
      public List<Mediciones> listEspecifica(String tipo){
         return  ServiceMediciones.instance().obtenerListaPorTipo(tipo);
     }
+    
+//    public void deleteTipoInstrumento(Mediciones medicion) throws TransformerException, Exception{
+//        if(ServiceMediciones.instance().ExistMedicion(medicion)){
+//           ServiceMediciones.instance().delete(medicion);
+//        }
+//    }
+//    
+    public void uptadeMediciones(Mediciones medicion) throws Exception{
+           ServiceMediciones.instance().update(medicion);
+    }
+    
 }

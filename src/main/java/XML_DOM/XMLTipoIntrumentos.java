@@ -1,15 +1,11 @@
 
 package XML_DOM;
 
-import Logic.Calibraciones;
-import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -67,22 +63,14 @@ public class XMLTipoIntrumentos {
                 nom2.appendChild(document.createTextNode("Barómetro"));
                 inst2.appendChild(nom2);
                 
-                   
                 Element uni2 = document.createElement("Unidad");
                 uni2.appendChild(document.createTextNode("PSI"));
                 inst2.appendChild(uni2);
 
-                // create the xml file
-                //transform the DOM Object to an XML File
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource domSource = new DOMSource(document);
                 StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-
-                // If you use
-                // StreamResult result = new StreamResult(System.out);
-                // the output will be pushed to the standard output ...
-                // You can use that for debugging
 
                 transformer.transform(domSource, streamResult);
 
@@ -98,8 +86,6 @@ public class XMLTipoIntrumentos {
     {
        boolean result = false;
         boolean idexist = false;
-      
-        //----------------Check if user id already exists--------------
         
         try {
             File xmlFile = new File(xmlFilePath);
@@ -126,9 +112,6 @@ public class XMLTipoIntrumentos {
          pce.printStackTrace();
         }
         
-        
-        
-        //---------------If user id does not exits---------------------
         try {
             if(!idexist)
             {

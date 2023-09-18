@@ -83,10 +83,12 @@ public class View extends javax.swing.JFrame {
 
         DefaultTableModel tabla = (DefaultTableModel) MedicionesLecturaTableCalibracion.getModel();
         tabla.setRowCount(0);
+            System.out.println(+mediciones.size());
         for(int i = 0; i < mediciones.size(); i++){
         Object[] fila = {mediciones.get(i).getMedida(), mediciones.get(i).getReferencia(), 
             mediciones.get(i).getLectura()};
-        tabla.addRow(fila);
+         tabla.addRow(fila);
+         System.out.println("Objeto: "+i);
         }
     }
 
@@ -105,7 +107,7 @@ public class View extends javax.swing.JFrame {
     }
     
     public void limpiarLabelsCalib(){
-        medicionesCalibracionesTextField.setText(" ");      
+        medicionesCalibracionesTextField.setText("");      
         DefaultTableModel model = (DefaultTableModel)listadoTableCalibracion.getModel();
         int cont = model.getRowCount()+1;
         String numero = String.format("%03d", cont);
@@ -723,9 +725,14 @@ public class View extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Medida", "Referencia", "Lectura"
+
             }
         ));
+        MedicionesLecturaTableCalibracion.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                MedicionesLecturaTableCalibracionComponentAdded(evt);
+            }
+        });
         MedicionesLecturaTableCalibracion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MedicionesLecturaTableCalibracionMouseClicked(evt);
@@ -1206,26 +1213,30 @@ public class View extends javax.swing.JFrame {
         String medicion = medicionesCalibracionesTextField.getText();
         int rangMinimo = Integer.parseInt(txtMinimo.getText());
         int rangMaximo = Integer.parseInt(txtMaximo.getText());
-        
+         
          try {
-           controladoraCalib.addCalibracion(num ,fecha ,medicion,tipo);
+             controladoraCalib.addCalibracion(num ,fecha ,medicion,tipo);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
-         
          try {
              controladoraMedic.addMediciones(rangMinimo,rangMaximo,
                      Integer.parseInt(medicion),num);
-         } catch (TransformerException | SAXException | IOException ex) {
+         } catch (TransformerException ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SAXException ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (IOException ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
+        
          this.limpiarLabelsCalib();
     }//GEN-LAST:event_guardarCalibracionButtonActionPerformed
 
     private void limpiarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarCalibracionButtonActionPerformed
         this.limpiarLabelsCalib();
         borrarCalibracionButton.setEnabled(false); 
-        NumCalibracionesTextField.setEnabled(true); 
+        NumCalibracionesTextField.setEnabled(false); 
     }//GEN-LAST:event_limpiarCalibracionButtonActionPerformed
 
     private void borrarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCalibracionButtonActionPerformed
@@ -1267,11 +1278,26 @@ public class View extends javax.swing.JFrame {
        medicionesCalibracionesTextField.setText((String) medicion);
        fechaTextField.setText((String) fecha);
        NumCalibracionesTextField.setText((String) numero);
-        NumCalibracionesTextField.setText(String.valueOf(numero));
+       this.controladoraMedic.uptadeTable((String)numero);
     }//GEN-LAST:event_listadoTableCalibracionMouseClicked
 
     private void MedicionesLecturaTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableCalibracionMouseClicked
-        // TODO add your handling code here:
+    DefaultTableModel model = (DefaultTableModel)MedicionesLecturaTableCalibracion.getModel();
+    model.addTableModelListener(e -> {
+       int columna = e.getColumn();  
+       int fila = e.getFirstRow();
+       int filaSeleccionada = listadoTableCalibracion.getSelectedRow();
+       Object medida = listadoTableCalibracion.getValueAt(filaSeleccionada, 0);
+       Object referencia = listadoTableCalibracion.getValueAt(filaSeleccionada, 1);
+       Object lectura = listadoTableCalibracion.getValueAt(filaSeleccionada, 2);
+       String numero = NumCalibracionesTextField.getText();
+    if (columna == 2) 
+        try {
+            this.controladoraMedic.uptadeMediciones((String)medida,(String)referencia,(String)lectura,numero);
+       } catch (Exception ex) {
+           Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    });
     }//GEN-LAST:event_MedicionesLecturaTableCalibracionMouseClicked
 
     private void fechaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTextFieldActionPerformed
@@ -1286,6 +1312,10 @@ public class View extends javax.swing.JFrame {
         String tipo = (String) jComboBox2.getSelectedItem();
         controladoraInst.uptadeTable(tipo);
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void MedicionesLecturaTableCalibracionComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableCalibracionComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MedicionesLecturaTableCalibracionComponentAdded
 
     /**
      * @param args the command line arguments
