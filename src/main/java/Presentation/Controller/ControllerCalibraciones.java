@@ -20,14 +20,13 @@ public class ControllerCalibraciones {
         mod.CreateUserFile();   
     }
     
-    public void addCalibracion(String numero,String fecha, String mediciones) throws Exception{
-        mod.addCalibracion(new Calibraciones(numero,fecha,mediciones));
-        uptadeTable();
-        vista.limpiarLabelsTipoInst();
+    public void addCalibracion(String numero,String fecha, String mediciones, String tipo) throws Exception{
+        mod.addCalibracion(new Calibraciones(numero,fecha,mediciones,tipo));
+        uptadeTable(tipo);
     }
     
-    public void uptadeTable(){
-        vista.UptadeTableCalibraciones(mod.returnListCalibraciones());
+    public void uptadeTable(String tipo){
+        vista.UptadeTableCalibraciones(mod.listEspecifica(tipo));
     }
     
    public List<Calibraciones> returnList(){
@@ -36,8 +35,7 @@ public class ControllerCalibraciones {
    
     public void deleteCalibracion(Calibraciones calibracion) throws Exception{
         mod.deleteCalibracion(calibracion);
-        //uptadeTable();
-        vista.limpiarLabelsInstr();
+        uptadeTable(calibracion.getTipo());
     }
     public void recoverList(){
         mod.recoverList();

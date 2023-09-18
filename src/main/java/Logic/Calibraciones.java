@@ -11,20 +11,25 @@ public class Calibraciones {
     private String numero;
     private String mediciones;
     private String fecha;
+    private String tipo;
 
      public Calibraciones(){
         this.numero =" ";
         this.mediciones= " ";  
         this.fecha = " ";
+        this.tipo = " ";
     }
 	
-    public Calibraciones(String numero, String fecha, String mediciones) {
+    public Calibraciones(String numero, String fecha, String mediciones,String tipo) {
         this.numero = numero;
         this.fecha = fecha;
         this.mediciones = mediciones;     
+        this.tipo = tipo;
     }    
       
-  
+    public String getTipo(){
+        return tipo;
+    }
     
     public String getNumero() {
         return numero;

@@ -25,5 +25,6 @@ public class DataCalibraciones {
 
     public void setCalibraciones(List<Calibraciones> calibracioens) {
         this.calibraciones = calibraciones;
-    } 
+    }
+    
 }

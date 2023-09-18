@@ -2,7 +2,9 @@
 package Logic.Service;
 
 import Data.DataInstrumento;
+import Logic.Calibraciones;
 import Logic.Instrumento;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,5 +73,17 @@ public class ServiceInstrumento {
         else
             return false;
     } 
+    
+    public List<Instrumento> obtenerListaPorTipo(String tipo) {
+        List<Instrumento> instrumentos = new ArrayList<>();
+
+        for (Instrumento obj : data.getInstrumento()) {
+            if (obj.getTipo().equals(tipo)) {
+                instrumentos.add(obj);
+            }
+        }
+
+        return instrumentos;
+    }
 
 }

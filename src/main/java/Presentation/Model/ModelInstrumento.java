@@ -99,5 +99,8 @@ public class ModelInstrumento extends java.util.Observable {
      public void recoverList(){
         XMLInstrumentos.recoverInstrumento(returnListInstrumento());
     }
+     public List<Instrumento> listEspecifica(String tipo){
+        return  ServiceInstrumento.instance().obtenerListaPorTipo(tipo);
+    }
     
 }

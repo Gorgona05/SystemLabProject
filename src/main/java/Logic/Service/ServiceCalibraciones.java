@@ -4,6 +4,7 @@ package Logic.Service;
 import Data.DataCalibraciones;
 import Logic.Calibraciones;
 import Logic.Instrumento;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,7 +65,7 @@ public class ServiceCalibraciones {
                 .sorted(Comparator.comparing(Calibraciones::getNumero))
                 .collect(Collectors.toList());
     }
-    public boolean ExistInstrumento(Calibraciones e){
+    public boolean ExistCalibraciones(Calibraciones e){
         Calibraciones result = data.getCalibraciones().stream()
                 .filter(i->i.getNumero().equals(e.getNumero())).findFirst().orElse(null);
         if (result!=null) 
@@ -72,5 +73,17 @@ public class ServiceCalibraciones {
         else
             return false;
     } 
+    
+    public List<Calibraciones> obtenerListaPorTipo(String tipo) {
+        List<Calibraciones> calibraciones = new ArrayList<>();
+
+        for (Calibraciones obj : data.getCalibraciones()) {
+            if (obj.getTipo().equals(tipo)) {
+                calibraciones.add(obj);
+            }
+        }
+
+        return calibraciones;
+    }
     
 }

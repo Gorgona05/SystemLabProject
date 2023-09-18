@@ -1,35 +1,37 @@
 
 package Presentation;
 
+import java.time.LocalDate;
 import Logic.Calibraciones;
 import Presentation.Controller.ControllerTipoInstrumento;
 import Logic.Instrumento;
+import Logic.Mediciones;
 import Logic.TipoInstrumento;
 import Presentation.Controller.ControllerCalibraciones;
 import Presentation.Controller.ControllerInstrumento;
+import Presentation.Controller.ControllerMediciones;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
-import java.text.ParseException;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.xml.sax.SAXException;
+
 
 /**
  *
  * @author PABLO MORERA
  */
 public class View extends javax.swing.JFrame {
-    
+     private LocalDateTime fechaActual;
      private ControllerTipoInstrumento controladoraTipoInst;
      private ControllerInstrumento controladoraInst;
      private ControllerCalibraciones controladoraCalib;
+     private ControllerMediciones controladoraMedic;
      private DefaultTableModel tableModel;
     /**
      * Creates new form View
@@ -39,6 +41,8 @@ public class View extends javax.swing.JFrame {
         controladoraTipoInst = new ControllerTipoInstrumento(this);
         controladoraInst = new ControllerInstrumento(this);
         controladoraCalib = new ControllerCalibraciones(this);
+        controladoraMedic = new ControllerMediciones(this);
+        fechaActual = LocalDateTime.now();
     }
   
     public void UptadeTableTipoInstrumento(List<TipoInstrumento> instrumentos){
@@ -74,7 +78,17 @@ public class View extends javax.swing.JFrame {
         tabla.addRow(fila);
         }
     }
+    
+        public void UptadeTableMediciones(List<Mediciones> mediciones){
 
+        DefaultTableModel tabla = (DefaultTableModel) MedicionesLecturaTableCalibracion.getModel();
+        tabla.setRowCount(0);
+        for(int i = 0; i < mediciones.size(); i++){
+        Object[] fila = {mediciones.get(i).getMedida(), mediciones.get(i).getReferencia(), 
+            mediciones.get(i).getLectura()};
+        tabla.addRow(fila);
+        }
+    }
 
     public void limpiarLabelsTipoInst(){
       codigoTextField.setText("");
@@ -90,11 +104,18 @@ public class View extends javax.swing.JFrame {
      txtDescripcionInstrume.setText("");
     }
     
-     public void limpiarLabelsCalib(){
-      NumCalibracionesTextField.setText("");
-      medicionesCalibracionesTextField.setText("");
-      fechaTextField.setText("");
+    public void limpiarLabelsCalib(){
+        medicionesCalibracionesTextField.setText(" ");      
+        DefaultTableModel model = (DefaultTableModel)listadoTableCalibracion.getModel();
+        int cont = model.getRowCount()+1;
+        String numero = String.format("%03d", cont);
+        NumCalibracionesTextField.setText(String.valueOf(numero));
+        
+        fechaTextField.setText(fechaActual.getDayOfMonth()+"/"+fechaActual.getMonthValue()+"/"+
+                fechaActual.getYear());
+        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -251,7 +272,7 @@ public class View extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(limpiarButton))
                     .addComponent(borrarButton))
-                .addGap(0, 219, Short.MAX_VALUE))
+                .addGap(0, 273, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +330,7 @@ public class View extends javax.swing.JFrame {
                 .addComponent(reporteButton)
                 .addGap(18, 18, 18)
                 .addComponent(buscarButton)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +373,7 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addContainerGap(531, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,6 +440,17 @@ public class View extends javax.swing.JFrame {
         lblSerie8.setText("Máximo");
 
         lblSerie9.setText("Tipo");
+
+        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox2MouseClicked(evt);
+            }
+        });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         txtSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -736,7 +768,7 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(FechaCalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fechaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fechaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(MedicionesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -895,7 +927,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(calibracionesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 802, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -928,7 +960,7 @@ public class View extends javax.swing.JFrame {
             .addGroup(acercaDePanelLayout.createSequentialGroup()
                 .addGap(188, 188, 188)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
         acercaDePanelLayout.setVerticalGroup(
             acercaDePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1036,7 +1068,6 @@ public class View extends javax.swing.JFrame {
         String minimo = txtMinimo.getText();
         String maximo = txtMaximo.getText();
         String tolerancia = txtTolerancia.getText();
-        jComboBox2.setSelectedIndex(0);
         String tipo = (String) jComboBox2.getSelectedItem();
          try {
           controladoraInst.addInstrumento(serie ,tipo ,descripcion, minimo, maximo, tolerancia);
@@ -1081,8 +1112,8 @@ public class View extends javax.swing.JFrame {
         model.setRowCount(0);
     
          for (int i = 0; i < controladoraInst.returnList().size(); i++) {
-            String tipInst = controladoraInst.returnList().get(i).getSerie();
-            if (tipInst.toLowerCase().contains(busqueda)) 
+            String inst = controladoraInst.returnList().get(i).getDescripcion();
+            if (inst.toLowerCase().contains(busqueda)) 
                 model.addRow(new Object[]{controladoraInst.returnList().get(i).getSerie(),
                 controladoraInst.returnList().get(i).getDescripcion(),
                 controladoraInst.returnList().get(i).getMinimo(),
@@ -1110,7 +1141,12 @@ public class View extends javax.swing.JFrame {
         txtMaximo.setText((String) maximo);
         txtTolerancia.setText((String) tolerancia);
         borrarInstruButton.setEnabled(true); 
+        String tipo = txtDescripcionInstrume.getText();
+        controladoraCalib.uptadeTable(tipo);
+        InfoInstrumeCalibraTxt.setText(tipo);
+ 
         jTabbedPane1.setEnabledAt(2, true);
+         this.limpiarLabelsCalib();
         
     }//GEN-LAST:event_listaInstrumentosTablaMouseClicked
 
@@ -1122,11 +1158,14 @@ public class View extends javax.swing.JFrame {
        //Intrumento
        borrarInstruButton.setEnabled(false); 
        controladoraInst.recoverList();
-       controladoraInst.uptadeTable();
+       String tipo = (String) jComboBox2.getSelectedItem();
+       controladoraInst.uptadeTable(tipo);
        //Calibraciones
+       InfoInstrumeCalibraTxt.setEnabled(false);
        borrarCalibracionButton.setEnabled(false); 
        controladoraCalib.recoverList();
-       controladoraCalib.uptadeTable();
+       fechaTextField.setEnabled(false);
+       NumCalibracionesTextField.setEnabled(false);
        //General
        jTabbedPane1.setEnabledAt(2, false);
 
@@ -1155,51 +1194,36 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void NumCalibracionesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumCalibracionesTextFieldActionPerformed
-        borrarButton.setEnabled(false); 
-        NumCalibracionesTextField.setEnabled(true); 
-        String num = NumCalibracionesTextField.getText();
-        String fech = fechaTextField.getText();
-        String medicion = medicionesCalibracionesTextField.getText();
-         try {
-           controladoraCalib.addCalibracion(num ,fech ,medicion);
-         } catch (Exception ex) {
-             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-         }
+
     }//GEN-LAST:event_NumCalibracionesTextFieldActionPerformed
 
     
-    public void mostrarCalibraciones(Instrumento instrumentoSeleccionado) {
-        if (instrumentoSeleccionado != null) {
-            InfoInstrumeCalibraTxt.setText(instrumentoSeleccionado.toString());
-        }
-    }
-     private void cargarDatosInstrumentos(List<Instrumento> instrumentos) {
-        
-        for (Instrumento instrumento : instrumentos) {
-            tableModel.addRow(new Object[]{
-                instrumento.getSerie(),
-                instrumento.getDescripcion(),
-                instrumento.getMinimo(),
-                instrumento.getMaximo(),
-                instrumento.getTolerancia()
-            });}}
-    
     private void guardarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCalibracionButtonActionPerformed
         borrarCalibracionButton.setEnabled(false); 
-        NumCalibracionesTextField.setEnabled(true); 
         String num = NumCalibracionesTextField.getText();
         String fecha = fechaTextField.getText();
+        String tipo = txtDescripcionInstrume.getText();
         String medicion = medicionesCalibracionesTextField.getText();
+        int rangMinimo = Integer.parseInt(txtMinimo.getText());
+        int rangMaximo = Integer.parseInt(txtMaximo.getText());
         
          try {
-           controladoraCalib.addCalibracion(num ,fecha ,medicion);
+           controladoraCalib.addCalibracion(num ,fecha ,medicion,tipo);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
+         
+         try {
+             controladoraMedic.addMediciones(rangMinimo,rangMaximo,
+                     Integer.parseInt(medicion),num);
+         } catch (TransformerException | SAXException | IOException ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         this.limpiarLabelsCalib();
     }//GEN-LAST:event_guardarCalibracionButtonActionPerformed
 
     private void limpiarCalibracionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarCalibracionButtonActionPerformed
-        limpiarLabelsCalib();
+        this.limpiarLabelsCalib();
         borrarCalibracionButton.setEnabled(false); 
         NumCalibracionesTextField.setEnabled(true); 
     }//GEN-LAST:event_limpiarCalibracionButtonActionPerformed
@@ -1236,7 +1260,14 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_reporteCalibracionButtonActionPerformed
 
     private void listadoTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listadoTableCalibracionMouseClicked
-         MedicionesPanel.setVisible(true);
+       int filaSeleccionada = listadoTableCalibracion.getSelectedRow();
+       Object numero = listadoTableCalibracion.getValueAt(filaSeleccionada, 0);
+       Object fecha = listadoTableCalibracion.getValueAt(filaSeleccionada, 1);
+       Object medicion = listadoTableCalibracion.getValueAt(filaSeleccionada, 2);
+       medicionesCalibracionesTextField.setText((String) medicion);
+       fechaTextField.setText((String) fecha);
+       NumCalibracionesTextField.setText((String) numero);
+        NumCalibracionesTextField.setText(String.valueOf(numero));
     }//GEN-LAST:event_listadoTableCalibracionMouseClicked
 
     private void MedicionesLecturaTableCalibracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MedicionesLecturaTableCalibracionMouseClicked
@@ -1246,6 +1277,15 @@ public class View extends javax.swing.JFrame {
     private void fechaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaTextFieldActionPerformed
+
+    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
+      
+    }//GEN-LAST:event_jComboBox2MouseClicked
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        String tipo = (String) jComboBox2.getSelectedItem();
+        controladoraInst.uptadeTable(tipo);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -74,7 +74,7 @@ public class ModelCalibraciones extends java.util.Observable{
     }
     
      public void addCalibracion(Calibraciones calibracion) throws Exception{
-        if(ServiceCalibraciones.instance().ExistInstrumento(calibracion)){
+        if(ServiceCalibraciones.instance().ExistCalibraciones(calibracion)){
            XMLCalibraciones.UpdateCalibracion(calibracion);
            ServiceCalibraciones.instance().update(calibracion);
        }
@@ -85,7 +85,7 @@ public class ModelCalibraciones extends java.util.Observable{
     }
      
     public void deleteCalibracion(Calibraciones calibracion) throws TransformerException, Exception{
-       if(ServiceCalibraciones.instance().ExistInstrumento(calibracion)){
+       if(ServiceCalibraciones.instance().ExistCalibraciones(calibracion)){
            XMLCalibraciones.deleteCalibracion(calibracion);
            ServiceCalibraciones.instance().delete(calibracion);
         }
@@ -97,5 +97,9 @@ public class ModelCalibraciones extends java.util.Observable{
     
     public void recoverList(){
         XMLCalibraciones.recoverCalibracion(returnListCalibraciones());
+    }
+    
+    public List<Calibraciones> listEspecifica(String tipo){
+        return  ServiceCalibraciones.instance().obtenerListaPorTipo(tipo);
     }
 }
